@@ -25,10 +25,11 @@ Rapid-Set-Vermarktung/
 │
 └── Recherche Interessenten/
     │
+    ├── Gespraechsleitfaden_ARM_Kampagne_Gesamt.md  ← Telefonleitfaden (Tiefbau + GaLaBau)
+    │
     ├── ── TIEFBAU-KAMPAGNE ──────────────────────────
     │
     ├── PROJEKTSTATUS_ARM_Kampagne.md          ← Status Tiefbau
-    ├── Gespraechsleitfaden_ARM_Kampagne.md    ← Telefonleitfaden Tiefbau
     ├── generate_leadlist.py                   ← Script Tiefbau
     ├── ARM_Anrufliste_Priorisiert.csv         ← Anrufliste (A→B→C)
     ├── ARM_CRM_Import_Leads.csv               ← Salesforce Import
@@ -38,7 +39,6 @@ Rapid-Set-Vermarktung/
     ├── ── GALABAU-KAMPAGNE ──────────────────────────
     │
     ├── PROJEKTSTATUS_GaLaBau_Kampagne.md      ← Status GaLaBau
-    ├── Gespraechsleitfaden_ARM_GaLaBau_Kampagne.md  ← Telefonleitfaden GaLaBau
     ├── generate_galabau_leadlist.py            ← Script GaLaBau
     ├── GaLaBau_Anrufliste_Priorisiert.csv     ← Anrufliste (A→B→C)
     ├── GaLaBau_CRM_Import_Leads.csv           ← Salesforce Import
@@ -56,15 +56,11 @@ Rapid-Set-Vermarktung/
 
 ## Schnellstart für das Telefonteam
 
-### Tiefbau-Kampagne
-1. **Anrufliste:** `ARM_Anrufliste_Priorisiert.csv` öffnen (sortiert A→B→C)
-2. **Leitfaden:** `Gespraechsleitfaden_ARM_Kampagne.md` lesen
-3. **Excel:** `ARM_Leadliste_Komplett.xlsx` für Übersicht mit A/B/C-Tabs
-
-### GaLaBau-Kampagne
-1. **Anrufliste:** `GaLaBau_Anrufliste_Priorisiert.csv` öffnen (sortiert A→B→C)
-2. **Leitfaden:** `Gespraechsleitfaden_ARM_GaLaBau_Kampagne.md` lesen
-3. **Excel:** `GaLaBau_Leadliste_Komplett.xlsx` für Übersicht mit A/B/C-Tabs
+1. **Leitfaden lesen:** `Gespraechsleitfaden_ARM_Kampagne_Gesamt.md` (gilt für Tiefbau + GaLaBau)
+2. **Anrufliste öffnen:**
+   - Tiefbau: `ARM_Anrufliste_Priorisiert.csv`
+   - GaLaBau: `GaLaBau_Anrufliste_Priorisiert.csv`
+3. **Excel-Übersicht:** `ARM_Leadliste_Komplett.xlsx` / `GaLaBau_Leadliste_Komplett.xlsx`
 
 ---
 
