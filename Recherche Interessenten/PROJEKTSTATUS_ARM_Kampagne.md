@@ -1,6 +1,6 @@
 # ARM Kampagne - Projektstatus
 
-**Stand: 23. Februar 2026 (aktualisiert)**
+**Stand: 24. Februar 2026**
 **Kampagne:** "Kaufe 2 Paletten (2x48 Sack), davon 24 Sack ohne Berechnung! Laufzeit: Ende März (Option Ende April)."
 
 ---
@@ -9,113 +9,127 @@
 
 | Kennzahl | Wert |
 |----------|------|
-| **Leads gesamt** | **1081** (nach Deduplizierung, 1120 roh aus 10 Regionen) |
-| **A-Leads** (sofort anrufen) | **416** |
-| **B-Leads** (zweite Welle) | **458** |
-| **C-Leads** (optional) | **207** |
-| **Regionen abgeschlossen** | **10 von 10** (alle PLZ-Regionen komplett!) |
-| **Regionen in Arbeit** | 0 |
-| **Regionen offen** | 0 |
+| **Leads gesamt (dedupliziert)** | **1.705** |
+| **A-Leads** | **621** |
+| **davon Tier 1 (anrufbereit, AP+Telefon)** | **463** |
+| **davon Tier 2 (ohne Ansprechpartner)** | **158** |
+| **B-Leads** | **660** |
+| **C-Leads** | **424** |
+| **Ursprung** | 1.081 Tiefbau + 728 GaLaBau, zusammengeführt |
+
+### AP-Abdeckung A-Leads
+
+| Segment | A-Leads | Mit AP | Quote |
+|---------|---------|--------|-------|
+| Kommune (Bauhöfe/Straßenmeistereien) | 395 | 306 | **77%** |
+| Privat (GaLaBau) | 139 | 119 | **86%** |
+| Privat (Straßenbau) | 87 | 38 | **44%** |
+| **Gesamt** | **621** | **463** | **75%** |
 
 ---
 
-## Status pro PLZ-Region
+## Kampagnen-Dateien
 
-### Abgeschlossen (Report + high_relevance_names fertig, Script-Lauf ausstehend)
+### Hauptdateien (aktuell)
 
-| Region | Gebiet | Leads (roh) | Report-Datei |
-|--------|--------|-------------|--------------|
-| PLZ 9 | Bayern / Thüringen | ~90 | `Recherche Tiefbauunternehmen PLZ 9 durch claude.md` |
-| PLZ 0 | Sachsen / Sachsen-Anhalt / Thüringen | ~70 | `Recherche Tiefbauunternehmen PLZ 0 durch claude.md` |
-| PLZ 8 | Bayern Süd (Oberbayern/Schwaben) | ~80 | `Recherche Tiefbauunternehmen PLZ 8 durch claude.md` |
-| PLZ 6 | Hessen / Saarland / Rhein-Neckar | ~91 | `Recherche Tiefbauunternehmen PLZ 6 durch claude.md` |
-| PLZ 7 | Baden-Württemberg | ~94 | `Recherche Tiefbauunternehmen PLZ 7 durch claude.md` |
-| PLZ 5 | Köln / Bonn / Aachen / Koblenz / Trier | ~106 | `Recherche Tiefbauunternehmen PLZ 5 durch claude.md` |
-| PLZ 2 | Hamburg / SH / Nds Nord / Bremen | ~100 | `Recherche Tiefbauunternehmen PLZ 2 durch claude.md` |
+| Datei | Beschreibung |
+|-------|-------------|
+| `ARM_Kampagne_Leadliste.xlsx` | **Excel-Hauptdatei** mit 5 Tier-Tabs + Zusammenfassung |
+| `ARM_Kampagne_Gesamtliste.csv` | CSV für CRM-Import (1.705 Leads, alle Kategorien) |
+| `ARM_Tier1_Kampagnenbereit.csv` | Nur Tier 1 — 463 sofort anrufbare A-Leads |
+| `Gespraechsleitfaden_ARM_Kampagne_Gesamt.md` | Telefonleitfaden für Tiefbau + GaLaBau |
 
-### Zuletzt abgeschlossen
+### Excel-Tabs (ARM_Kampagne_Leadliste.xlsx)
 
-| Region | Gebiet | Leads (roh) | Report-Datei |
-|--------|--------|-------------|--------------|
-| PLZ 4 | NRW Ruhrgebiet / Münsterland / Niederrhein | ~106 | `Recherche Tiefbauunternehmen PLZ 4 durch claude.md` |
-| PLZ 1 | Berlin / Brandenburg / Mecklenburg-Vorpommern | ~133 | `Recherche Tiefbauunternehmen PLZ 1 durch claude.md` |
-| PLZ 3 | Hannover / Braunschweig / Kassel / Göttingen / Magdeburg | ~162 | `Recherche Tiefbauunternehmen PLZ 3 durch claude.md` |
+| Tab | Inhalt | Leads |
+|-----|--------|-------|
+| Tier 1 Anrufbereit | A-Leads mit Ansprechpartner + Telefon | 463 |
+| Tier 2 Kommunen o.AP | Kommunen ohne namentlichen AP (Bauhof anrufen) | 89 |
+| Tier 2 Privat o.AP | Private Firmen ohne AP (meist Straßenbau) | 69 |
+| B-Leads | Zweite Welle / E-Mail-Kampagne | 660 |
+| C-Leads | Langfrist (Ingenieurbüros, Architekten) | 424 |
+| Zusammenfassung | Statistik + Legende | — |
 
----
+### Quelldaten (Original-Listen)
 
-## Output-Dateien
-
-| Datei | Beschreibung | Aktuell |
-|-------|-------------|---------|
-| `ARM_CRM_Import_Leads.csv` | Salesforce Lead-Import (UTF-8-BOM, Semikolon) | 1081 Leads (10 Regionen) |
-| `ARM_Anrufliste_Priorisiert.csv` | Sortiert A→B→C für Telefonteam | 1081 Leads (10 Regionen) |
-| `ARM_Leadliste_Komplett.xlsx` | Excel mit Tabs: Übersicht, A-Leads, B-Leads, C-Leads | 1081 Leads (10 Regionen) |
-| `generate_leadlist.py` | Reproduzierbares Python-Script | Alle 10 Regionen konfiguriert + high_relevance_names |
+| Datei | Beschreibung |
+|-------|-------------|
+| `ARM_Anrufliste_Priorisiert.csv` | Original Tiefbau-Liste (1.081 Leads) |
+| `GaLaBau_Anrufliste_Priorisiert.csv` | Original GaLaBau-Liste (728 Leads) |
+| `ARM_CRM_Import_Leads.csv` | Salesforce Import Tiefbau |
+| `GaLaBau_CRM_Import_Leads.csv` | Salesforce Import GaLaBau |
 
 ---
 
-## Workflow pro Region (Standardprozess)
+## Phase 1: Leadrecherche (abgeschlossen)
 
-1. **PLZ-Region konfigurieren** in `generate_leadlist.py`:
-   - `PLZ_REGIONS` Dict-Eintrag
-   - `detect_bundesland()` Mapping
-2. **4 parallele Recherche-Agenten** starten:
-   - Kommunale Tiefbauämter / Bauhöfe
-   - Staatliche Straßenbaubehörden
-   - Private Straßenbauunternehmen
-   - Ingenieurbüros Straßenbau
-3. **Markdown-Report** erstellen: `Recherche Tiefbauunternehmen PLZ X durch claude.md`
-4. **high_relevance_names** ergänzen (regionale Spezialisten für A-Lead-Scoring)
-5. **Script ausführen** → Output-Dateien aktualisieren
+### Tiefbau-Kampagne (10 PLZ-Regionen)
+
+| Region | Gebiet | Leads |
+|--------|--------|-------|
+| PLZ 0 | Sachsen / Sachsen-Anhalt / Thüringen | ~70 |
+| PLZ 1 | Berlin / Brandenburg / Mecklenburg-Vorpommern | ~133 |
+| PLZ 2 | Hamburg / SH / Nds Nord / Bremen | ~100 |
+| PLZ 3 | Hannover / Braunschweig / Kassel / Magdeburg | ~162 |
+| PLZ 4 | NRW Ruhrgebiet / Münsterland / Niederrhein | ~106 |
+| PLZ 5 | Köln / Bonn / Aachen / Koblenz / Trier | ~106 |
+| PLZ 6 | Hessen / Saarland / Rhein-Neckar | ~91 |
+| PLZ 7 | Baden-Württemberg | ~94 |
+| PLZ 8 | Bayern Süd (Oberbayern/Schwaben) | ~80 |
+| PLZ 9 | Bayern / Thüringen | ~90 |
+
+### GaLaBau-Kampagne (10 PLZ-Regionen)
+
+Analog zur Tiefbau-Kampagne, 728 Leads aus allen PLZ-Regionen.
 
 ---
 
-## Priorisierungs-Logik (A/B/C Scoring)
+## Phase 2: Zusammenführung & AP-Recherche (abgeschlossen)
 
-### A-Leads (sofort anrufen)
-- Kommunale Tiefbauämter/Bauhöfe mit Telefon + E-Mail
-- Kleine/mittlere Straßenbauer mit Fokus Instandsetzung
-- Firmen aus der `high_relevance_names`-Liste
+### Schritte
 
-### B-Leads (zweite Welle)
-- Größere private Bauunternehmen (Max Bögl, STRABAG etc.)
-- Staatliche Bauämter (längere Beschaffungswege)
-- Kommunen ohne vollständige Kontaktdaten
+1. **Listen-Merge:** Tiefbau (1.081) + GaLaBau (728) zusammengeführt, nach PLZ+Ort dedupliziert → **1.705 unique Leads**
+2. **B-Lead Bereinigung:** 234 als "Behörde" fehlklassifizierte Einträge korrigiert:
+   - 39 → Privat (Straßenbau Konzern) — STRABAG, Eurovia, PORR etc.
+   - 36 → Behörde (Landesbetrieb)
+   - 49 → Behörde (Landkreis)
+   - 114 → Privat (Straßenbau)
+   - 33 → Kommune
+3. **AP-Recherche Kommune** (8 Batches, ~330 Kommunen recherchiert):
+   - Runde 1: 95/116 GaLaBau-Kommunen → Bauhofleiter gefunden
+   - Batch A-C: 68/104 weitere Kommunen
+   - Batch D-G: 83/115 Tiefbau-Kommunen
+   - **Ergebnis: 306 von 395 Kommune-A-Leads mit AP (77%)**
+4. **AP-Recherche GaLaBau** (2 Batches, 85 Firmen):
+   - GF/Inhaber über Impressum, Handelsregister, Northdata
+   - **Ergebnis: 119 von 139 GaLaBau-A-Leads mit AP (86%)**
+5. **AP-Recherche Straßenbau** (5 Batches, 144 Firmen):
+   - Massive Datenqualitätsprobleme: ~30 Firmen aufgelöst, ~10 falsche Standorte, ~5 falsche Branche
+   - **Ergebnis: 38 von 87 Straßenbau-A-Leads mit AP (44%)**
 
-### C-Leads (optional/nachgelagert)
-- Ingenieurbüros (indirekte Empfehlung)
-- Autobahn GmbH (formale Beschaffung)
-- Einträge ohne verwertbare Kontaktdaten
+### Bekannte Datenqualitätsprobleme (Straßenbau)
+
+Die Tiefbau-Ursprungsliste enthält zahlreiche veraltete Firmennamen:
+- Nachwendegründungen in Ostdeutschland (aufgelöst/insolvent)
+- Niederlassungen ohne eigene Web-Präsenz (NL statt Hauptsitz)
+- Falsche Branchenzuordnung (z.B. August Brötje = Heizungshersteller)
+- Für ~49 nicht auffindbare Firmen empfiehlt sich manuelle Prüfung via handelsregister.de
 
 ---
 
 ## Offene Aufgaben
 
-### Kurzfristig (erledigt)
-- [x] PLZ 5 Report fertigstellen (106 Einträge)
-- [x] PLZ 2 Report fertigstellen (100 Einträge)
-- [x] high_relevance_names für PLZ 5 ergänzen (16 Spezialisten)
-- [x] high_relevance_names für PLZ 2 ergänzen (18 Spezialisten)
-- [x] PLZ 4 recherchieren (NRW - Ruhrgebiet, 106 Einträge)
-- [x] high_relevance_names für PLZ 4 ergänzen (26 Spezialisten)
-- [x] PLZ 1 recherchieren (Berlin/Brandenburg/MV, 133 Einträge)
-- [x] high_relevance_names für PLZ 1 ergänzen (24 Spezialisten)
-- [x] PLZ 3 recherchieren (Hannover/Braunschweig/Kassel/Magdeburg, 162 Einträge)
-- [x] high_relevance_names für PLZ 3 ergänzen (28 Spezialisten)
-- [x] detect_bundesland() erweitert (MV, Berlin/Brandenburg getrennt, Sachsen-Anhalt PLZ 39, Hessen PLZ 36)
-- [x] Script ausführen → 1081 Leads (416 A / 458 B / 207 C) aus allen 10 Regionen
-
-### Optional / Verbesserungen
 - [ ] Kontaktdaten-Verifikation (Stichproben telefonisch prüfen)
-- [x] Ergänzung fehlender Ansprechpartner über Web-Recherche → 17 Kommunen + 1 Firma recherchiert (update_ansprechpartner.py)
-- [x] Gesprächsleitfaden für Telefonteam erstellen → `Gespraechsleitfaden_ARM_Kampagne.md`
+- [ ] Tier 2 Kommunen (89): Telefonisch Bauhofleiter erfragen
+- [ ] Straßenbau-Firmenliste bereinigen (nicht-existente Firmen entfernen/ersetzen)
 - [ ] Follow-up-Tracking in CRM einrichten
+- [ ] B-Lead E-Mail-Kampagne vorbereiten
 
 ---
 
 ## Technische Hinweise
 
-- **Python 3** + `openpyxl` benötigt für Excel-Export
-- **Script-Aufruf:** `python generate_leadlist.py` im Ordner `Recherche Interessenten/`
-- **Deduplizierung:** Stadtbasiert für Kommunen, namensbasiert mit Aliassen für Private
-- **CRM-Format:** UTF-8-BOM, Semikolon-Delimiter, kompatibel mit Salesforce
+- **Python 3** + `openpyxl` benötigt (`pip install openpyxl`)
+- **Excel-Export:** `python export_excel.py`
+- **Recherche-Integration:** `python integrate_recherche.py` (alle Batch-CSVs → Hauptliste)
+- **CRM-Format:** UTF-8-BOM, Semikolon-Delimiter, Salesforce-kompatibel
