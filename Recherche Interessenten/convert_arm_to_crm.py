@@ -106,7 +106,7 @@ def convert():
     with open(INPUT_FILE, "r", encoding="utf-8-sig") as infile:
         reader = csv.DictReader(infile, delimiter=";")
 
-        with open(OUTPUT_FILE, "w", encoding="utf-8", newline="") as outfile:
+        with open(OUTPUT_FILE, "w", encoding="utf-8-sig", newline="") as outfile:
             writer = csv.DictWriter(outfile, fieldnames=CRM_HEADERS)
             writer.writeheader()
 
