@@ -1,9 +1,9 @@
 # Kampagnenkonzept: Frühjahrsaktion Asphalt Repair Mix
 
-**Stand:** 24. Februar 2026
+**Stand:** 27. Februar 2026
 **Kampagne:** Frühjahrsaktion ARM Kaltasphalt (Rapid Set)
 **Verantwortlich:** Stefan Fleischmann
-**Status:** Konzept zur Team-Freigabe
+**Status:** LP v2 live, wartet auf Kollegen-Feedback
 
 ---
 
@@ -29,21 +29,23 @@ Eine saisonale B2B-Vermarktungskampagne für **Rapid Set ASPHALT REPAIR MIX (ARM
 | **Landingpage -- SEO-Analyse** | Komplett | Keywords, Cluster, On-Page-Empfehlungen |
 | **Landingpage -- Content** | Komplett | Alle Sektionen ausgetextet, Ads-Entwürfe |
 | **Landingpage -- CRO-Analyse** | Komplett | Formular-Optimierung, A/B-Tests |
-| **Landingpage -- HTML** | In Arbeit | 1.216 Zeilen HTML, Grundstruktur steht |
+| **Landingpage -- HTML v1 (Aktionsseite)** | Archiviert | v1 mit Frühjahrsaktion → [Archiv](https://sfleischmann-3steps2.github.io/Marketing-Team-Skills/projekte/korodur-asphalt-repair-mix/landing-page/archiv/index-short-v1-fruehjahrsaktion.html) |
+| **Landingpage -- HTML v2 (Produktseite)** | **LIVE** | Endkunden-Seite ohne Aktion → [Live ansehen](https://sfleischmann-3steps2.github.io/Marketing-Team-Skills/projekte/korodur-asphalt-repair-mix/landing-page/index.html) |
 | **Händler-Mailings (PDF)** | Vorhanden | 2 Stück (Mailing 1 Handel, Mailing 2 Verarbeiter) |
 
 ### Was steht noch aus?
 
-| Aufgabe | Prio | Verantwortlich |
-|---------|------|----------------|
-| **Kampagnenkonzept finalisieren** | JETZT | Stefan + dieses Dokument |
-| **LP-Struktur an Kampagne anpassen** | HOCH | Marketing-Team (parallel) |
-| **E-Mail-Vorlage (Mailing)** | HOCH | Marketing |
-| **LinkedIn-Posts / Ads schalten** | MITTEL | Marketing |
-| **Google Ads aufsetzen** | MITTEL | Marketing |
-| **Telefonakquise starten** | HOCH | Vertrieb/Telefonteam |
-| **CRM-Import + Tracking** | HOCH | CRM-Team |
-| **LP live schalten + testen** | HOCH | Webteam |
+| Aufgabe | Prio | Verantwortlich | Status |
+|---------|------|----------------|--------|
+| ~~Kampagnenkonzept finalisieren~~ | ~~JETZT~~ | ~~Stefan~~ | Erledigt |
+| ~~LP-Struktur an Kampagne anpassen~~ | ~~HOCH~~ | ~~Marketing-Team~~ | Erledigt (v2 live) |
+| ~~LP live schalten + testen~~ | ~~HOCH~~ | ~~Webteam~~ | Erledigt (GitHub Pages) |
+| **Kollegen-Feedback LP v2** | JETZT | Team | Wartet auf Feedback |
+| **E-Mail-Vorlage (Händler → Endkunden)** | HOCH | Marketing | Ausstehend |
+| **LinkedIn-Posts / Ads schalten** | MITTEL | Marketing | Ausstehend |
+| **Google Ads aufsetzen** | MITTEL | Marketing | Ausstehend |
+| **Telefonakquise starten** | HOCH | Vertrieb/Telefonteam | Ausstehend |
+| **CRM-Import + Tracking** | HOCH | CRM-Team | Ausstehend |
 
 ---
 
@@ -119,18 +121,40 @@ Die Kampagne folgt einer klaren 4-Schritt-Dramaturgie:
 
 ---
 
-## 3. Landingpage -- Strukturoptimierung
+## 3. Landingpage -- Status und Entscheidungen
 
-### 3.1 Kernproblem der aktuellen LP-Struktur
+> **Update 27.02.2026:** Die Landing Page wurde als **reine Produktinformationsseite (v2)** neu erstellt. Das Aktionsangebot (Frühjahrsaktion) ist **bewusst nicht auf der LP**, weil es nur für Händler gilt. Die Endkunden sehen die Produktvorteile und kaufen dann bei ihrem Händler.
 
-Die aktuelle Landingpage (im Marketing-Repo) ist als **allgemeine Produktseite** aufgebaut. Sie erklärt ARM hervorragend, aber:
+### LP v2 (aktuell, live)
+- **Typ:** Produktinformationsseite für Endkunden
+- **Link:** [Live ansehen](https://sfleischmann-3steps2.github.io/Marketing-Team-Skills/projekte/korodur-asphalt-repair-mix/landing-page/index.html)
+- **Repo:** [Marketing-Team-Skills](https://github.com/sfleischmann-3steps2/Marketing-Team-Skills) → `projekte/korodur-asphalt-repair-mix/landing-page/index.html`
+- **Fokus:** Problem → Lösung → Vergleich → Referenzen → Technische Daten → FAQ
+- **CTA:** Nur 1x am Ende: "Größeres Projekt? Beratung anfragen" → korodur.de/kontakt/
+- **Kein** Aktionsangebot, **keine** Dringlichkeit, **kein** Sticky CTA
+- **Status:** Wartet auf Kollegen-Feedback
 
-- **Kein Bezug zur Frühjahrsaktion** -- das Aktionsangebot (24 Sack geschenkt) fehlt komplett
-- **Kein saisonaler Aufhänger** -- "Frostschäden sind jetzt akut" wird nicht als Einstieg genutzt
-- **CTA ist zu allgemein** -- "Jetzt beraten lassen" statt "Jetzt Aktionsangebot sichern"
-- **Zu viel Produkt-Erklärung, zu wenig Dringlichkeit** -- die Seite liest sich wie ein Datenblatt, nicht wie eine Kampagne
+### LP v1 (archiviert)
+- **Typ:** Kampagnenseite mit Frühjahrsaktion
+- **Link:** [Archiv ansehen](https://sfleischmann-3steps2.github.io/Marketing-Team-Skills/projekte/korodur-asphalt-repair-mix/landing-page/archiv/index-short-v1-fruehjahrsaktion.html)
+- **Grund für Archivierung:** Aktionsangebot gilt nur für Händler, nicht für Endkunden
 
-### 3.2 Empfohlene Storyline der Landingpage
+### 3.1 Warum v2? (Händler-Angebot ≠ Endkunden-LP)
+
+Die erste Landingpage (v1) war als Kampagnenseite mit Frühjahrsaktion aufgebaut. Bei der Überarbeitung zu v2 wurde erkannt:
+
+- Das **Aktionsangebot (24 Sack geschenkt)** gilt nur für **Händler**, nicht für Endkunden
+- Die LP wird aber an **Endkunden** ausgespielt (Händler schickt Link per E-Mail)
+- Endkunden brauchen **Produktinformation und Kaufargumente**, kein Aktionsangebot
+- Der Kampagnenfluss ist: KORODUR → Händler-Mailing (mit Aktion) → Händler → E-Mail an Endkunden (mit LP-Link) → Endkunde sieht Produktseite
+
+**Konsequenz für v2:** Alle Aktions-Elemente entfernt, Fokus auf Produktvorteile, nur 1 dezenter CTA am Ende.
+
+---
+
+> **Hinweis:** Die folgenden Abschnitte 3.2–3.4 beschreiben die **ursprüngliche v1-Konzeption** und dienen als Referenz für die Kampagnen-Storyline. Die v2-Umsetzung weicht bewusst davon ab (siehe 3.1).
+
+### 3.2 Empfohlene Storyline der Landingpage (v1-Konzept)
 
 Die LP soll der Kampagnen-Storyline folgen:
 
@@ -143,7 +167,7 @@ ANGEBOT:        Frühjahrsaktion: 24 Sack geschenkt
 CTA:            Jetzt melden (Formular / Telefon)
 ```
 
-### 3.3 Optimierte Sektionsstruktur
+### 3.3 Optimierte Sektionsstruktur (v1-Konzept)
 
 ---
 
@@ -307,7 +331,7 @@ Dies ist die **zentrale neue Sektion**, die bisher komplett fehlt.
 
 ---
 
-### 3.4 Zusammenfassung der LP-Änderungen
+### 3.4 Zusammenfassung der LP-Änderungen (v1-Konzept, historisch)
 
 | Was | Bisher (Marketing-Repo) | Empfehlung Frühjahrsaktion |
 |-----|------------------------|---------------------------|
