@@ -1,12 +1,27 @@
 # ARM Rapid Set Vermarktung
 
 **Kampagne:** Frostschäden-Reparatur mit ARM Kaltasphalt (Rapid Set)
-**Angebot:** Kaufe 2 Paletten (2x48 Sack), davon 24 Sack ohne Berechnung!
+**Händler-Angebot:** 2 Paletten kaufen (2x48 Sack), davon 24 Sack ohne Berechnung (nur für Händler)
 **Laufzeit:** Ende März (Option Ende April)
 
 ---
 
-## Übersicht (Stand: 24.02.2026)
+## Landing Page
+
+Die Landing Page für Endkunden (Produktinformation, ohne Aktionsangebot) wird im separaten Repo gepflegt:
+
+| | |
+|---|---|
+| **Repo** | [Marketing-Team-Skills](https://github.com/sfleischmann-3steps2/Marketing-Team-Skills) |
+| **Live (v2)** | [ARM Produktseite](https://sfleischmann-3steps2.github.io/Marketing-Team-Skills/projekte/korodur-asphalt-repair-mix/landing-page/index.html) |
+| **Archiv (v1)** | [Frühjahrsaktion Vollversion](https://sfleischmann-3steps2.github.io/Marketing-Team-Skills/projekte/korodur-asphalt-repair-mix/landing-page/archiv/index-v1-fruehjahrsaktion.html) |
+| **Status** | v2 live, wartet auf Kollegen-Feedback |
+
+**Konzept:** KORODUR schickt E-Mail an Händler (mit Aktionsangebot) → Händler schicken E-Mail an ihre Kunden (mit Link zur Landing Page) → Endkunde sieht Produktinfo und kauft beim Händler.
+
+---
+
+## Übersicht (Stand: 27.02.2026)
 
 Die Tiefbau- und GaLaBau-Listen wurden zu einer **gemeinsamen ARM-Kampagnenliste** zusammengeführt, dedupliziert und mit Ansprechpartner-Recherche angereichert.
 
