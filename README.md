@@ -43,6 +43,19 @@ Die Tiefbau- und GaLaBau-Listen wurden zu einer **gemeinsamen ARM-Kampagnenliste
 | Privat (Straßenbau) | 87 | 38 | **44%** |
 | **Gesamt** | **621** | **463** | **75%** |
 
+### ADM-Gebiete (Pilotstart)
+
+Die Kampagne startet zunächst in den Gebieten von 4 Außendienstmitarbeitern:
+
+| Fachberater | PLZ-Gebiete | Kampagnenbereit |
+|---|---|---|
+| Jens Sackmann | 20–29 | 38 |
+| André Grahn | 40–49, 50–53, 57–59 | 109 |
+| Jens Lang | 70–79, 86–89 | 64 |
+| Daniel May | 80–85, 94 | 26 |
+| Francesco Palese | 90–93, 95–97 | 49 |
+| **TOTAL** | | **286** |
+
 ---
 
 ## Ordnerstruktur
@@ -58,8 +71,15 @@ Rapid-Set-Vermarktung/
     ├── ── KAMPAGNEN-HAUPTDATEIEN ─────────────────────
     │
     ├── ARM_Kampagne_Leadliste.xlsx        ← EXCEL Hauptdatei (5 Tier-Tabs + Zusammenfassung)
-    ├── ARM_Kampagne_Gesamtliste.csv       ← CSV für CRM-Import (1.705 Leads)
+    ├── ARM_Kampagne_Gesamtliste.csv       ← CSV Master-Liste (1.705 Leads, bundesweit)
     ├── ARM_Tier1_Kampagnenbereit.csv       ← Nur Tier 1 (463 anrufbereite Leads)
+    │
+    ├── ── ADM-GEBIETE (PILOTSTART) ─────────────────
+    │
+    ├── ARM_ADM_Gesamtliste.csv            ← 286 kampagnenbereite Leads (mit Fachberater)
+    ├── ARM_ADM_Kampagne.xlsx              ← Excel: Übersicht + 5 Fachberater-Tabs (286 Leads)
+    ├── ARM_ADM_CRM_Import.csv             ← Salesforce-Import (286 Leads, Komma-Delimiter)
+    ├── Verkaufsgebiete_ARM.md             ← PLZ → Fachberater Zuordnungstabelle
     ├── Gespraechsleitfaden_ARM_Kampagne_Gesamt.md  ← Telefonleitfaden
     │
     ├── ── QUELLDATEN (TIEFBAU) ───────────────────────
@@ -85,8 +105,10 @@ Rapid-Set-Vermarktung/
     ├── Strassenbau_GF_Recherche_Batch_A-J.csv / K-Z.csv
     │
     └── ── SCRIPTS & SONSTIGES ────────────────────────
+        ├── filter_adm_territories.py      ← ADM-Gebiete filtern + Export
         ├── integrate_recherche.py          ← Recherche-Integration
         ├── export_excel.py                 ← Excel-Export Script
+        ├── convert_arm_to_crm.py           ← CRM-Konvertierung (bundesweit)
         ├── generate_leadlist.py            ← Original Tiefbau-Script
         ├── generate_galabau_leadlist.py    ← Original GaLaBau-Script
         └── Datensatzbeispiele_Leadimport CRM.xlsx
@@ -106,6 +128,7 @@ Rapid-Set-Vermarktung/
 ## Technisches
 
 - **Python 3** + `openpyxl` benötigt (`pip install openpyxl`)
-- **Excel-Export:** `python export_excel.py` im Ordner `Recherche Interessenten/`
+- **ADM-Filter:** `python filter_adm_territories.py` — filtert auf 4 Fachberater-Gebiete, erzeugt CSV + Excel + CRM-Import
+- **Excel-Export:** `python export_excel.py` — bundesweite Leadliste als Excel
 - **CRM-Import:** `ARM_Kampagne_Gesamtliste.csv` (UTF-8-BOM, Semikolon-Delimiter, Salesforce-kompatibel)
 - **Recherche-Integration:** `python integrate_recherche.py` (alle Batch-CSVs → Hauptliste)
