@@ -21,7 +21,7 @@ Die Landing Page für Endkunden (Produktinformation, ohne Aktionsangebot) wird i
 
 ---
 
-## Übersicht (Stand: 27.02.2026)
+## Übersicht (Stand: 02.03.2026)
 
 Die Master-Liste (`ARM_Kampagne_Gesamtliste.csv`) enthält **1.759 Leads** bundesweit. Für den Pilotstart wurde auf die Gebiete von 5 Außendienstmitarbeitern gefiltert — nur Leads mit vollständigen Kontaktdaten (AP + Telefon + Email).
 
@@ -51,8 +51,9 @@ Rapid-Set-Vermarktung/
     ├── ── ADM-KAMPAGNE (AKTIV) ─────────────────────
     │
     ├── ARM_ADM_Gesamtliste.csv            ← 340 kampagnenbereite Leads (mit Fachberater)
+    ├── ARM_ADM_Gesamtliste_enriched.csv   ← Wie oben + Straße + Adresse_Status (143/340 angereichert)
     ├── ARM_ADM_Kampagne.xlsx              ← Excel: Übersicht + 5 Fachberater-Tabs
-    ├── ARM_ADM_CRM_Import.csv             ← Salesforce-Import (340 Leads)
+    ├── ARM_ADM_CRM_Import.csv             ← Salesforce-Import (340 Leads, 147 mit Straße)
     ├── Verkaufsgebiete_ARM.md             ← PLZ → Fachberater Zuordnungstabelle
     ├── Gespraechsleitfaden_ARM_Kampagne_Gesamt.md  ← Telefonleitfaden
     │
@@ -76,7 +77,9 @@ Rapid-Set-Vermarktung/
         ├── filter_adm_territories.py      ← ADM-Gebiete filtern + Export
         ├── integrate_recherche.py          ← Recherche-Integration
         ├── export_excel.py                 ← Excel-Export Script
-        ├── convert_arm_to_crm.py           ← CRM-Konvertierung
+        ├── enrich_addresses.py             ← Impressum-Scraping → Straßenadresse (checkpoint-fähig)
+        ├── enrich_checkpoint.json          ← Fortschritt enrich_addresses.py (resume)
+        ├── convert_arm_to_crm.py           ← CRM-Konvertierung (liest enriched CSV wenn vorhanden)
         ├── generate_leadlist.py            ← Original Tiefbau-Script
         └── generate_galabau_leadlist.py    ← Original GaLaBau-Script
 ```
@@ -96,5 +99,6 @@ Rapid-Set-Vermarktung/
 
 - **Python 3** + `openpyxl` benötigt (`pip install openpyxl`)
 - **ADM-Filter:** `python filter_adm_territories.py` — filtert auf 5 Fachberater-Gebiete, erzeugt CSV + Excel + CRM-Import
-- **CRM-Import:** `ARM_ADM_CRM_Import.csv` (Salesforce-Format, Komma-Delimiter)
+- **Adress-Anreicherung:** `python enrich_addresses.py` — scrapet Straßenadressen via Impressum (resume-fähig via Checkpoint). Fehlende Adressen danach manuell in `ARM_ADM_Gesamtliste_enriched.csv` nachtragen.
+- **CRM-Import:** `python convert_arm_to_crm.py` → `ARM_ADM_CRM_Import.csv` (Salesforce-Format, Komma-Delimiter). Liest automatisch enriched CSV wenn vorhanden.
 - **Recherche-Integration:** `python integrate_recherche.py` (alle Batch-CSVs → Hauptliste)
