@@ -2,14 +2,22 @@
 """
 Anreicherung der ARM_ADM_Gesamtliste.csv mit Straßenadressen via Impressum-Scraping.
 
-Logik je Zeile:
-  1. Domain aus Email extrahieren
-  2. URL-Kandidaten probieren (/impressum, /kontakt, etc.)
-  3. Bekannte PLZ im Text suchen (Cross-Validation)
-  4. Zeile vor der PLZ = Straße + Hausnummer
-  5. Ergebnis in ARM_ADM_Gesamtliste_enriched.csv schreiben
+Extraktions-Strategie je Seite (in Priorität):
+  1. JSON-LD (schema.org PostalAddress) — am zuverlässigsten
+  2. <address> HTML-Tag
+  3. PLZ-Kontext-Suche (Regex) — Fallback
 
-Checkpoint-Datei enrich_checkpoint.json erlaubt Resume nach Abbruch.
+URL-Kandidaten je Domain:
+  - /impressum, /impressum.html, /impressum/
+  - /kontakt, /kontakt.html, /kontakt/
+  - /ueber-uns, /about
+  - /datenschutz (enthält oft auch Adresse)
+  - Kommunen: /rathaus/impressum, /service/impressum, /verwaltung/impressum
+  - HTTP-Fallback für ältere Sites
+  - Root-URL als letzter Versuch
+
+CLI-Flags:
+  --retry-failed   Setzt alle not_found im Checkpoint zurück → werden neu gescrapt
 """
 
 import csv
@@ -42,28 +50,47 @@ HEADERS = {
 }
 
 REQUEST_TIMEOUT = 10
-RATE_LIMIT_DELAY = 1.0  # seconds between requests
+RATE_LIMIT_DELAY = 1.0
 
-# Straßen-Regex: Großbuchstabe + Kleinbuchstaben + Straßensuffix + Hausnummer
+# Generische E-Mail-Provider ohne Firmenwebsite → überspringen
+GENERIC_PROVIDERS = {
+    "t-online.de", "gmail.com", "googlemail.com",
+    "gmx.de", "gmx.net", "gmx.at", "gmx.ch",
+    "web.de", "yahoo.de", "yahoo.com",
+    "hotmail.com", "hotmail.de", "outlook.com", "outlook.de",
+    "freenet.de", "arcor.de", "icloud.com", "me.com",
+    "live.de", "live.com", "aol.com", "aol.de",
+}
+
+# Straßen-Regex (keine generischen Ortsbestandteile wie berg, hof, markt)
 STREET_PATTERN = re.compile(
     r"[A-ZÄÖÜ][a-zäöüß\-]+(?:straße|str\.|weg|gasse|allee|platz|ring|damm|chaussee|promenade|ufer|graben)\s+\d+[a-zA-Z]?",
     re.IGNORECASE,
 )
 
-# Postleitzahl-Regex (5-stellig, Deutschland)
+# "Am/An der/Im/In der + Name + Hausnummer" z.B. "Am Markt 3"
+STREET_PATTERN_AM = re.compile(
+    r"\b(?:Am|An der|An den|Im|In der|In den|Auf dem|Auf der|Zum|Zur)\s+[A-ZÄÖÜ][a-zäöüß\-]+\s+\d+[a-zA-Z]?",
+    re.IGNORECASE,
+)
+
 PLZ_PATTERN = re.compile(r"\b(\d{5})\b")
 
 
+# ── Hilfsfunktionen ──────────────────────────────────────────────────────────
+
 def extract_domain(email: str) -> str:
-    """Extrahiert die Domain aus einer E-Mail-Adresse."""
     email = email.strip().lower()
     if "@" not in email:
         return ""
     return email.split("@", 1)[1].strip()
 
 
+def is_generic_provider(domain: str) -> bool:
+    return domain in GENERIC_PROVIDERS
+
+
 def fetch_url(url: str) -> str | None:
-    """Lädt eine URL und gibt den Text-Inhalt zurück. None bei Fehler."""
     try:
         req = Request(url, headers=HEADERS)
         with urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
@@ -83,8 +110,77 @@ def fetch_url(url: str) -> str | None:
         return None
 
 
+# ── Extraktions-Methoden ─────────────────────────────────────────────────────
+
+def extract_json_ld_address(raw_html: str, plz: str) -> str:
+    """
+    Sucht schema.org PostalAddress in JSON-LD Blöcken.
+    Gibt 'streetAddress' zurück wenn PLZ passt, sonst "".
+    """
+    scripts = re.findall(
+        r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',
+        raw_html,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    for script in scripts:
+        try:
+            data = json.loads(script.strip())
+        except (json.JSONDecodeError, ValueError):
+            continue
+
+        # Rekursiv nach PostalAddress suchen
+        addresses = _find_postal_addresses(data)
+        for addr in addresses:
+            postal = str(addr.get("postalCode", "")).strip()
+            street = str(addr.get("streetAddress", "")).strip()
+            if street and (not plz or postal == plz or not postal):
+                return street
+    return ""
+
+
+def _find_postal_addresses(obj, depth=0) -> list:
+    """Rekursive Suche nach PostalAddress-Objekten im JSON-LD."""
+    if depth > 6:
+        return []
+    results = []
+    if isinstance(obj, dict):
+        type_val = obj.get("@type", "")
+        if isinstance(type_val, str) and "PostalAddress" in type_val:
+            results.append(obj)
+        elif isinstance(type_val, list) and any("PostalAddress" in t for t in type_val):
+            results.append(obj)
+        for v in obj.values():
+            results.extend(_find_postal_addresses(v, depth + 1))
+    elif isinstance(obj, list):
+        for item in obj:
+            results.extend(_find_postal_addresses(item, depth + 1))
+    return results
+
+
+def extract_address_tag(raw_html: str, plz: str) -> str:
+    """
+    Sucht <address>...</address> Tags und extrahiert Straße darin.
+    """
+    address_blocks = re.findall(
+        r"<address[^>]*>(.*?)</address>",
+        raw_html,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    for block in address_blocks:
+        text = html.unescape(re.sub(r"<[^>]+>", " ", block))
+        text = re.sub(r"\s+", " ", text).strip()
+
+        # PLZ-Validierung
+        if plz and plz not in text:
+            continue
+
+        street = _extract_street_from_text(text)
+        if street:
+            return street
+    return ""
+
+
 def strip_html_tags(text: str) -> str:
-    """Entfernt HTML-Tags und dekodiert HTML-Entities."""
     text = html.unescape(text)
     text = re.sub(r"<script[^>]*>.*?</script>", " ", text, flags=re.IGNORECASE | re.DOTALL)
     text = re.sub(r"<style[^>]*>.*?</style>", " ", text, flags=re.IGNORECASE | re.DOTALL)
@@ -93,17 +189,19 @@ def strip_html_tags(text: str) -> str:
     return text.strip()
 
 
-def find_address_in_text(text: str, plz: str) -> str:
-    """
-    Sucht nach Straße in der Nähe der bekannten PLZ.
-    Gibt Straße+Hausnummer zurück oder "".
-    """
-    # PLZ im Text suchen
-    plz_match = PLZ_PATTERN.search(text)
-    if not plz_match:
-        return ""
+def _extract_street_from_text(text: str) -> str:
+    """Sucht Straßenmuster im Text, gibt ersten Treffer zurück."""
+    m = STREET_PATTERN.search(text)
+    if m:
+        return m.group(0).strip()
+    m = STREET_PATTERN_AM.search(text)
+    if m:
+        return m.group(0).strip()
+    return ""
 
-    # Alle PLZ-Positionen finden, nach bekannter PLZ filtern
+
+def find_address_in_text(text: str, plz: str) -> str:
+    """Sucht Straße in der Nähe der bekannten PLZ (500 Zeichen Kontext)."""
     found_pos = -1
     for m in PLZ_PATTERN.finditer(text):
         if m.group(1) == plz:
@@ -113,68 +211,112 @@ def find_address_in_text(text: str, plz: str) -> str:
     if found_pos == -1:
         return ""
 
-    # Kontext um die PLZ herum (300 Zeichen davor, 50 danach)
-    context_start = max(0, found_pos - 300)
-    context = text[context_start : found_pos + 50]
+    context_start = max(0, found_pos - 500)
+    context = text[context_start: found_pos + 80]
+    return _extract_street_from_text(context)
 
-    # Straße in diesem Kontext suchen
-    street_matches = list(STREET_PATTERN.finditer(context))
-    if street_matches:
-        # Letzten Treffer vor der PLZ nehmen (der ist am nächsten)
-        best = street_matches[-1].group(0).strip()
-        return best
 
-    return ""
+def extract_address(raw_html: str, plz: str) -> str:
+    """
+    Versucht alle Extraktionsmethoden in Priorität:
+    1. JSON-LD  2. <address>-Tag  3. PLZ-Kontext
+    """
+    street = extract_json_ld_address(raw_html, plz)
+    if street:
+        return street
 
+    street = extract_address_tag(raw_html, plz)
+    if street:
+        return street
+
+    text = strip_html_tags(raw_html)
+    return find_address_in_text(text, plz)
+
+
+# ── URL-Kandidaten ────────────────────────────────────────────────────────────
 
 def build_url_candidates(domain: str) -> list[str]:
-    """Gibt URL-Kandidaten in Prioritätsreihenfolge zurück."""
-    candidates = [
-        f"https://www.{domain}/impressum",
-        f"https://www.{domain}/impressum.html",
-        f"https://www.{domain}/impressum/",
-        f"https://www.{domain}/kontakt",
-        f"https://www.{domain}/kontakt.html",
-        f"https://www.{domain}/kontakt/",
-        f"https://www.{domain}",
-        f"https://{domain}/impressum",
-        f"https://{domain}/impressum.html",
-        f"https://{domain}",
+    """URL-Kandidaten in Prioritätsreihenfolge."""
+    # Basis-Pfade (allgemein)
+    paths = [
+        "/impressum",
+        "/impressum.html",
+        "/impressum/",
+        "/kontakt",
+        "/kontakt.html",
+        "/kontakt/",
+        "/ueber-uns",
+        "/ueber-uns/",
+        "/about",
+        "/datenschutz",
+        # Kommunen-typische Pfade
+        "/rathaus/impressum",
+        "/service/impressum",
+        "/verwaltung/impressum",
+        "/buergerservice/impressum",
+        "/stadtinfo/impressum",
+        "/de/impressum",
+        "",  # Root
     ]
-    return candidates
 
+    candidates = []
+    for path in paths:
+        candidates.append(f"https://www.{domain}{path}")
+
+    # https ohne www
+    for path in ["/impressum", "/impressum.html", "/impressum/", ""]:
+        candidates.append(f"https://{domain}{path}")
+
+    # HTTP-Fallback (ältere Sites)
+    for path in ["/impressum", "/impressum.html", ""]:
+        candidates.append(f"http://www.{domain}{path}")
+        candidates.append(f"http://{domain}{path}")
+
+    # Deduplizieren, Reihenfolge beibehalten
+    seen = set()
+    result = []
+    for url in candidates:
+        if url not in seen:
+            seen.add(url)
+            result.append(url)
+    return result
+
+
+# ── Haupt-Scraping ────────────────────────────────────────────────────────────
 
 def scrape_address(email: str, plz: str) -> tuple[str, str]:
-    """
-    Scrapt Adresse für eine E-Mail/PLZ-Kombination.
-    Gibt (straße, status) zurück: status ist 'found' oder 'not_found'.
-    """
     domain = extract_domain(email)
-    if not domain:
+    if not domain or is_generic_provider(domain):
         return "", "not_found"
 
+    fetched_domains = set()
+
     for url in build_url_candidates(domain):
+        # Nicht denselben Pfad zweimal holen (http/https Duplikate)
+        url_key = re.sub(r"^https?://", "", url)
+        if url_key in fetched_domains:
+            continue
+        fetched_domains.add(url_key)
+
         raw_html = fetch_url(url)
         if not raw_html:
-            time.sleep(0.2)
+            time.sleep(0.15)
             continue
 
-        text = strip_html_tags(raw_html)
-        straße = find_address_in_text(text, plz)
-
+        street = extract_address(raw_html, plz)
         time.sleep(RATE_LIMIT_DELAY)
 
-        if straße:
-            return straße, "found"
+        if street:
+            return street, "found"
 
-        # Nur kurz warten zwischen Kandidaten derselben Domain
-        time.sleep(0.3)
+        time.sleep(0.2)
 
     return "", "not_found"
 
 
+# ── Checkpoint ────────────────────────────────────────────────────────────────
+
 def load_checkpoint() -> dict:
-    """Lädt vorhandenen Checkpoint oder gibt leeres Dict zurück."""
     if os.path.exists(CHECKPOINT_FILE):
         try:
             with open(CHECKPOINT_FILE, "r", encoding="utf-8") as f:
@@ -185,16 +327,31 @@ def load_checkpoint() -> dict:
 
 
 def save_checkpoint(checkpoint: dict) -> None:
-    """Speichert Checkpoint-Dict als JSON."""
     with open(CHECKPOINT_FILE, "w", encoding="utf-8") as f:
         json.dump(checkpoint, f, ensure_ascii=False, indent=2)
 
 
-def enrich() -> None:
-    checkpoint = load_checkpoint()
-    print(f"Checkpoint geladen: {len(checkpoint)} bereits verarbeitete Einträge")
+def reset_not_found(checkpoint: dict) -> int:
+    """Setzt alle not_found-Einträge zurück. Gibt Anzahl zurück."""
+    keys = [k for k, v in checkpoint.items() if v.get("status") == "not_found"]
+    for k in keys:
+        del checkpoint[k]
+    return len(keys)
 
-    # Quelldaten einlesen
+
+# ── Hauptlauf ─────────────────────────────────────────────────────────────────
+
+def enrich(retry_failed: bool = False) -> None:
+    checkpoint = load_checkpoint()
+
+    if retry_failed:
+        n = reset_not_found(checkpoint)
+        save_checkpoint(checkpoint)
+        print(f"--retry-failed: {n} not_found-Einträge zurückgesetzt → werden neu gescrapt")
+
+    print(f"Checkpoint: {len(checkpoint)} bereits verarbeitet "
+          f"({sum(1 for v in checkpoint.values() if v.get('status')=='found')} gefunden)")
+
     with open(INPUT_FILE, "r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f, delimiter=";")
         rows = list(reader)
@@ -202,43 +359,39 @@ def enrich() -> None:
 
     print(f"Eingabe: {len(rows)} Zeilen aus {os.path.basename(INPUT_FILE)}")
 
-    # Ausgabe-Spalten
     out_fieldnames = list(fieldnames) + ["Straße", "Adresse_Status"]
-
     found_count = 0
     not_found_count = 0
     total = len(rows)
-
     enriched_rows = []
 
     for i, row in enumerate(rows, start=1):
         email = row.get("Email", "").strip()
         plz = row.get("PLZ", "").strip()
         firma = row.get("Firma", "").strip()
-
-        # Checkpoint-Key: E-Mail (eindeutig genug)
         ck_key = email if email else f"row_{i}"
 
         if ck_key in checkpoint:
-            # Aus Checkpoint laden
             cached = checkpoint[ck_key]
             straße = cached.get("straße", "")
             status = cached.get("status", "not_found")
             symbol = "✓" if status == "found" else "✗"
-            print(f"  [{i:3d}/{total}] {symbol} [CACHE] {firma[:35]:<35} → {straße or '—'}")
+            print(f"  [{i:3d}/{total}] {symbol} [cache] {firma[:35]:<35} → {straße or '—'}")
         else:
-            # Scrapen
-            print(f"  [{i:3d}/{total}]   Scrape: {firma[:35]:<35} ({email})", end="", flush=True)
-
-            if not email or "@" not in email:
+            domain = extract_domain(email)
+            skip = is_generic_provider(domain) if domain else True
+            if skip and domain:
+                print(f"  [{i:3d}/{total}] — [skip]  {firma[:35]:<35} ({domain})")
                 straße, status = "", "not_found"
             else:
-                straße, status = scrape_address(email, plz)
+                print(f"  [{i:3d}/{total}]   [scrape] {firma[:35]:<35} ({email})", end="", flush=True)
+                if not email or "@" not in email:
+                    straße, status = "", "not_found"
+                else:
+                    straße, status = scrape_address(email, plz)
+                symbol = "✓" if status == "found" else "✗"
+                print(f"\r  [{i:3d}/{total}] {symbol} [scrape] {firma[:35]:<35} → {straße or '—'}")
 
-            symbol = "✓" if status == "found" else "✗"
-            print(f"\r  [{i:3d}/{total}] {symbol} {firma[:35]:<35} → {straße or '—'}")
-
-            # Checkpoint speichern
             checkpoint[ck_key] = {"straße": straße, "status": status}
             save_checkpoint(checkpoint)
 
@@ -252,19 +405,18 @@ def enrich() -> None:
         enriched_row["Adresse_Status"] = status
         enriched_rows.append(enriched_row)
 
-    # Ausgabe schreiben
     with open(OUTPUT_FILE, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=out_fieldnames, delimiter=";")
         writer.writeheader()
         writer.writerows(enriched_rows)
 
     print()
-    pct_found = found_count / total * 100 if total > 0 else 0
-    pct_not = not_found_count / total * 100 if total > 0 else 0
-    print(f"✓  Gefunden:       {found_count:3d} / {total} ({pct_found:.0f}%)")
-    print(f"✗  Nicht gefunden: {not_found_count:3d} / {total} ({pct_not:.0f}%)")
+    pct = found_count / total * 100 if total > 0 else 0
+    print(f"✓  Gefunden:       {found_count:3d} / {total} ({pct:.0f}%)")
+    print(f"✗  Nicht gefunden: {not_found_count:3d} / {total} ({100-pct:.0f}%)")
     print(f"→  Ausgabe: {os.path.basename(OUTPUT_FILE)}")
 
 
 if __name__ == "__main__":
-    enrich()
+    retry = "--retry-failed" in sys.argv
+    enrich(retry_failed=retry)
