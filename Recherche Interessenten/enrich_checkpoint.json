@@ -1,0 +1,1342 @@
+{
+  "info@trim-galabau.de": {
+    "straße": "Gänseberg 5",
+    "status": "found"
+  },
+  "office@asv.bremen.de": {
+    "straße": "Herdentorsteinweg 49",
+    "status": "found"
+  },
+  "info@sb-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabau-braasch.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@mm-strassen-tiefbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "maass-hell@maass-hell.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@baest-gmbh.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "gartenbau@garland-bremen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabauwilli.de": {
+    "straße": "Schragestraße 12",
+    "status": "found"
+  },
+  "d.kretzschmar@t-online.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@w-koehler-gmbh.de": {
+    "straße": "Landstraße 8",
+    "status": "found"
+  },
+  "t.tuerke@hstbremen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@cassens-strassenbau.de": {
+    "straße": "Ladestraße 35a",
+    "status": "found"
+  },
+  "Gartenbauamt@magistrat.bremerhaven.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "ahrens@ahrens-gmbh.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "bremerhaven@hoth-tiefbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@wolansky.de": {
+    "straße": "Rehweg 2c",
+    "status": "found"
+  },
+  "info@dirk-grube.de": {
+    "straße": "Schröderstraße 5",
+    "status": "found"
+  },
+  "info@rischkau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@baumann-strassenbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@schiller-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@wolf-tiefbau.de": {
+    "straße": "Regentstr. 4",
+    "status": "found"
+  },
+  "info@heinrich-uhl.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@amw-stamer.de": {
+    "straße": "Röntgenstraße 13",
+    "status": "found"
+  },
+  "remo.rauber@buchholz.de": {
+    "straße": "Rathausplatz 1",
+    "status": "found"
+  },
+  "Tiefbau-Stadtplanung@kaltenkirchen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "wiesner@osterholz-scharmbeck.de": {
+    "straße": "Rathausstraße 1",
+    "status": "found"
+  },
+  "info@celle.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "strassenbau@verden.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "bauhof@wedel.de": {
+    "straße": "Rathausplatz 3",
+    "status": "found"
+  },
+  "info@stadt-soltau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@bad-segeberg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "fg66@stadt.buxtehude.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "Andreas.Westphal@cuxhaven.de": {
+    "straße": "Rathausplatz 1",
+    "status": "found"
+  },
+  "tiefbau@stadt.lueneburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@rotenburg-wuemme.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@ahrensburg.de": {
+    "straße": "Manfred-Samusch-Straße 5",
+    "status": "found"
+  },
+  "info@elmshorn.de": {
+    "straße": "Schulstraße 15",
+    "status": "found"
+  },
+  "info@geesthacht.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@quickborn.de": {
+    "straße": "Rathausplatz 1",
+    "status": "found"
+  },
+  "info@wunderlich-bau.com": {
+    "straße": "Molkereistr. 55",
+    "status": "found"
+  },
+  "Baumschutz@tbz-flensburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@gruenkonzept-flensburg.de": {
+    "straße": "Sophienhof 27",
+    "status": "found"
+  },
+  "info@garten-landree.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@gbn-gartenbaunord.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@grimsehlschenkel-galabau.de": {
+    "straße": "Pinguinweg 15",
+    "status": "found"
+  },
+  "info@galabau-schroeder.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@bfw-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@garbers-gmbh.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@robertgartenbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabauharms.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@huknapik.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "kontakt@karstenkeesenberg.de": {
+    "straße": "Herrenhausallee 85",
+    "status": "found"
+  },
+  "info@grewe-gruppe.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@manke-hamburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@boesbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@tiefbau-mierzwa.de": {
+    "straße": "Theodor-Yorck-Str. 6",
+    "status": "found"
+  },
+  "info@max-wiede.de": {
+    "straße": "Rungedamm 53",
+    "status": "found"
+  },
+  "bezirksamt@bergedorf.hamburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "bezirksamt@eimsbuettel.hamburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "plantenunblomen@hamburg-mitte.hamburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "MR@hamburg-nord.hamburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "stadtgruen@wandsbek.hamburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@dede-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "Tiefbauamt@kiel.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@ds-gartenbau.de": {
+    "straße": "Hangstraße 20",
+    "status": "found"
+  },
+  "info@karl-luhmann.de": {
+    "straße": "Luisenstr. 17",
+    "status": "found"
+  },
+  "info@bachert-bau.de": {
+    "straße": "Bundesstraße 26",
+    "status": "found"
+  },
+  "lsbgkommunikation@lsbg.hamburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@kobarg-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@korte-gartenbau.com": {
+    "straße": "Weserstraße 17",
+    "status": "found"
+  },
+  "peter.zurheide@stadt.lueneburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "office@scheel-erdbau.de": {
+    "straße": "Holzkampweg 5",
+    "status": "found"
+  },
+  "info@tulpe-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@westphal-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "luebeck@clement-tiefbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@gollo-gartenbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@kroll-lueneburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@magistrat.bremerhaven.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@bhagen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@thestorf.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@reiss-erdbau-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@groth-pinneberg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@roebau-hh.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@borgmann-garten.de": {
+    "straße": "Dorfstraße 52",
+    "status": "found"
+  },
+  "info@wulf-gartenbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "gerken-strassenbau@ewetel.net": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "m.inselmann@inselmann-tiefbau.de": {
+    "straße": "Kirchweg 20",
+    "status": "found"
+  },
+  "info@kusserow-gartenbau.de": {
+    "straße": "Ortsstr. 37",
+    "status": "found"
+  },
+  "info-gartenprojekte@waloch.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabau-biermann.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@gartenwerk-gmbh.de": {
+    "straße": "Lüttenweg 3",
+    "status": "found"
+  },
+  "stadtbetrieb@mail.aachen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabau-salber.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@tripp-galabau.de": {
+    "straße": "Münsterstraße 90",
+    "status": "found"
+  },
+  "strassen-radwegebau@stadt-koeln.de": {
+    "straße": "Willy-Brandt-Platz 2",
+    "status": "found"
+  },
+  "dhein@wbh-hagen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@dn-sb.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabau-weirauch.de": {
+    "straße": "Keufengasse 13",
+    "status": "found"
+  },
+  "stadtgruen@stadt-gl.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@lorenz-landschaftsbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@pankrazgalabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@bochum.de": {
+    "straße": "Willy-Brandt-Platz 2",
+    "status": "found"
+  },
+  "info@brandschaedel.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "kontakt@om-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info-stadtgruen@bonn.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "thorben.schulze-dinkelborg@borken.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "mail@haddick.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@bottrop.de": {
+    "straße": "Ernst-Wilczok-Platz 1",
+    "status": "found"
+  },
+  "galabau@blanik.de": {
+    "straße": "Heinrich-Hertz-Straße 10a",
+    "status": "found"
+  },
+  "info@castrop-rauxel.de": {
+    "straße": "Europaplatz 1",
+    "status": "found"
+  },
+  "info@ml-gartenplus.de": {
+    "straße": "Erlenweg 77",
+    "status": "found"
+  },
+  "info@dinslaken.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@dorsten.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@dortmund.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@groppe-gmbh.de": {
+    "straße": "Kieferstraße 44",
+    "status": "found"
+  },
+  "info@kaika-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@gehrken.de": {
+    "straße": "Pottgießerstraße 21",
+    "status": "found"
+  },
+  "info@schleith.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "wb@stadt-duisburg.de": {
+    "straße": "Burgplatz 19",
+    "status": "found"
+  },
+  "info@albertweil.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "strassenbau@duesseldorf.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@natura-duesseldorf.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "lemp.galabau@outlook.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@schuessler-bau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "wulf.riedel@tbl-leverkusen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@meschede.de": {
+    "straße": "Franz-Stahlmecke-Platz 2",
+    "status": "found"
+  },
+  "ruediger.wiegel@hennef.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@emsdetten.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "hallo@nagelschmitz.com": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "galabau@zimmermanngalabau.de": {
+    "straße": "Friedrichstraße 20",
+    "status": "found"
+  },
+  "info@stadtgruen.ruhr": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "anfrage@holm-gala.de": {
+    "straße": "Kunigundastraße 7",
+    "status": "found"
+  },
+  "info@spieker-bau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "sgammersbach@euskirchen.de": {
+    "straße": "Wilhelmstraße 41",
+    "status": "found"
+  },
+  "aachener.stadtbetrieb@mail.aachen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "francis.jovan@gummersbach.de": {
+    "straße": "Rathausplatz 1",
+    "status": "found"
+  },
+  "info@attendorn.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@bad-neuenahr-ahrweiler.de": {
+    "straße": "Hauptstraße 116",
+    "status": "found"
+  },
+  "rdute@euskirchen.de": {
+    "straße": "Wilhelmstraße 41",
+    "status": "found"
+  },
+  "goran.micic@iserlohn.de": {
+    "straße": "Schillerplatz 7",
+    "status": "found"
+  },
+  "baubetriebs-und-friedhofsamt@troisdorf.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@heckmann-bau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@stadt-gladbeck.de": {
+    "straße": "Willy-Brandt-Platz 2",
+    "status": "found"
+  },
+  "info@wbh-hagen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@mense-korte.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "stadtgruen@hamm.de": {
+    "straße": "Theodor-Heuss-Platz 16",
+    "status": "found"
+  },
+  "info@spieker-hamm.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@hennef.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@herne.de": {
+    "straße": "Friedrich-Ebert-Platz 2",
+    "status": "found"
+  },
+  "info@heitkamp-ug.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@ibbenbueren.de": {
+    "straße": "Münsterstraße 16",
+    "status": "found"
+  },
+  "info@weibel-bau.de": {
+    "straße": "Gerart-von-Bure-Str. 29",
+    "status": "found"
+  },
+  "stadt-kleve@kleve.de": {
+    "straße": "Minoritenplatz 1",
+    "status": "found"
+  },
+  "koeln@ringbeck-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@garten-liesenberg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "64ugur@web.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@bauer-courth.de": {
+    "straße": "Griesbergerstraße 24",
+    "status": "found"
+  },
+  "info@gartenbau-koelnbonn.de": {
+    "straße": "Hauptstraße 63",
+    "status": "found"
+  },
+  "info@galabau-sieger.de": {
+    "straße": "Mathildenstraße 62",
+    "status": "found"
+  },
+  "klaragmbh@outlook.com": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabau-erturk.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "FB66@krefeld.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "67@stadt.leverkusen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@GalaBau-Breuer.de": {
+    "straße": "Dornierstr. 2",
+    "status": "found"
+  },
+  "info@marl.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@moers.de": {
+    "straße": "Rathausplatz 1",
+    "status": "found"
+  },
+  "strassenmanagement@moenchengladbach.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@plum-galabau.de": {
+    "straße": "Trompeterallee 94",
+    "status": "found"
+  },
+  "ServiceCenterBauen@muelheim-ruhr.de": {
+    "straße": "Heinrich-Melzer-Straße 1",
+    "status": "found"
+  },
+  "tiefbauamt@stadt-muenster.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@rose-galabau.de": {
+    "straße": "Kirmstraße 23",
+    "status": "found"
+  },
+  "info@niemeier-bau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@oberhausen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@gala-bau-nrw.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@wieschenkaemper-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@thelen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@planta-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "osb@osnabrueck.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@recklinghausen.de": {
+    "straße": "Rathausplatz 3",
+    "status": "found"
+  },
+  "tiefbau@remscheid.de": {
+    "straße": "Theodor-Heuss-Platz 1",
+    "status": "found"
+  },
+  "info@rheine.de": {
+    "straße": "Mittelstraße 51",
+    "status": "found"
+  },
+  "info@sankt-augustin.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "gruenflaechen@siegen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbau@solingen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@stadt-steinfurt.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabau-vonmeer.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "kerstin.schroeer@bonn.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "t.stupperich@olpe.de": {
+    "straße": "Franziskanerstraße 6",
+    "status": "found"
+  },
+  "s.boehl@siegen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "rathaus@troisdorf.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabau-kalteis.de": {
+    "straße": "Mottmannstraße 11",
+    "status": "found"
+  },
+  "volker.kahlert@stadt-unna.de": {
+    "straße": "Rathausplatz 1",
+    "status": "found"
+  },
+  "info@roosen-gartenbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "peter.flato@warendorf.de": {
+    "straße": "Kesselstraße 4",
+    "status": "found"
+  },
+  "info@wesel.de": {
+    "straße": "Klever-Tor-Platz 1",
+    "status": "found"
+  },
+  "info@galabau-guarrasi.de": {
+    "straße": "Lindenplatz 24",
+    "status": "found"
+  },
+  "strassenverkehr@stadt.wuppertal.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@ehlhardt-gmbh.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@aalen.de": {
+    "straße": "Marktplatz 30",
+    "status": "found"
+  },
+  "tiefbauamt@augsburg.de": {
+    "straße": "Rathausplatz 1",
+    "status": "found"
+  },
+  "tiefbau@baden-baden.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@nepustil-galabau.de": {
+    "straße": "Rathausstraße 3",
+    "status": "found"
+  },
+  "bader@boeblingen.de": {
+    "straße": "Marktplatz 16",
+    "status": "found"
+  },
+  "azader@calw.de": {
+    "straße": "Marktplatz 9",
+    "status": "found"
+  },
+  "bauamt@donauwoerth.de": {
+    "straße": "Rathausgasse 1",
+    "status": "found"
+  },
+  "info@easygalabau.de": {
+    "straße": "Brunnmattenstraße 5",
+    "status": "found"
+  },
+  "tiefbauamt@esslingen.de": {
+    "straße": "Rathausplatz 2",
+    "status": "found"
+  },
+  "info@link-galabau.de": {
+    "straße": "Senefelderstraße 3",
+    "status": "found"
+  },
+  "info@flor-design.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "guta@stadt.freiburg.de": {
+    "straße": "Rathausplatz 2",
+    "status": "found"
+  },
+  "bauamt@friedberg.de": {
+    "straße": "Marienplatz 5",
+    "status": "found"
+  },
+  "stadtbauamt@friedrichshafen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@goeppingen.de": {
+    "straße": "Hauptstraße 1",
+    "status": "found"
+  },
+  "tiefbauamt@heidenheim.de": {
+    "straße": "Darwinstraße 10",
+    "status": "found"
+  },
+  "strassenwesen@heilbronn.de": {
+    "straße": "Marktplatz 7",
+    "status": "found"
+  },
+  "galabau.drautz@t-online.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@rrafshi.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@karlsruhe.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@erhardt-galabau.de": {
+    "straße": "Uferstr. 12",
+    "status": "found"
+  },
+  "bauhof@kaufbeuren.de": {
+    "straße": "Kaiser-Max-Straße 1",
+    "status": "found"
+  },
+  "michael.kral@kempten.de": {
+    "straße": "Rathausplatz 22",
+    "status": "found"
+  },
+  "tiefbau@kirchheim-teck.de": {
+    "straße": "Marktstraße 14",
+    "status": "found"
+  },
+  "tbk@konstanz.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "bgl@lahr.de": {
+    "straße": "Rathausplatz 4",
+    "status": "found"
+  },
+  "tiefbauamt@leonberg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "bauamt@lindau.de": {
+    "straße": "Linggstraße 3",
+    "status": "found"
+  },
+  "technischedienste@ludwigsburg.de": {
+    "straße": "Wilhelmstraße 11",
+    "status": "found"
+  },
+  "info@galabau-lang.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "k.dullisch@loerrach.de": {
+    "straße": "Luisenstraße 16",
+    "status": "found"
+  },
+  "info@bodensee-galabau.de": {
+    "straße": "Farnweg 8",
+    "status": "found"
+  },
+  "tiefbauamt@memmingen.de": {
+    "straße": "Marktplatz 1",
+    "status": "found"
+  },
+  "t.osswald@neu-ulm.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@nuertingen.de": {
+    "straße": "Marktstraße 7",
+    "status": "found"
+  },
+  "info@baum-und-garten.de": {
+    "straße": "Hindenburgstr. 67",
+    "status": "found"
+  },
+  "stadt@offenburg.de": {
+    "straße": "Hauptstraße 90",
+    "status": "found"
+  },
+  "tiefbauamt@pforzheim.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbau-und-wasserwirtschaft@rastatt.de": {
+    "straße": "Marktplatz 1",
+    "status": "found"
+  },
+  "umwelt@ravensburg.de": {
+    "straße": "Marienplatz 35",
+    "status": "found"
+  },
+  "tiefbauamt@reutlingen.de": {
+    "straße": "Marktplatz 22",
+    "status": "found"
+  },
+  "info@lutz-riepert.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "jochen.ruoff@rottweil.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@schwaebisch-gmuend.de": {
+    "straße": "Marktplatz 1",
+    "status": "found"
+  },
+  "info@seeger-landschaftsbau.de": {
+    "straße": "Hauptstraße 5",
+    "status": "found"
+  },
+  "tiefbauamt@sindelfingen.de": {
+    "straße": "Rathausplatz 1",
+    "status": "found"
+  },
+  "tiefbauamt@stuttgart.de": {
+    "straße": "Marktplatz 1",
+    "status": "found"
+  },
+  "info@braungalabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@gaxherri-galabau.de": {
+    "straße": "Solitudestraße 58",
+    "status": "found"
+  },
+  "info@oberer-garten.de": {
+    "straße": "Georg-Wössner-Ring 16",
+    "status": "found"
+  },
+  "info@garla-gruppe.com": {
+    "straße": "Bauhofring 19",
+    "status": "found"
+  },
+  "info@bietigheimer-gartengestaltung.de": {
+    "straße": "Bauhofring 19",
+    "status": "found"
+  },
+  "gerd.rudolf@tuttlingen.de": {
+    "straße": "Rathausstraße 1",
+    "status": "found"
+  },
+  "tiefbauamt@tuebingen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@schoenig-gartenbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "gruenflaechen@ulm.de": {
+    "straße": "Marktplatz 1",
+    "status": "found"
+  },
+  "kontakt@akbuga-galabau.de": {
+    "straße": "Mähringerweg 110",
+    "status": "found"
+  },
+  "tiefbau@villingen-schwenningen.de": {
+    "straße": "Marktplatz 1",
+    "status": "found"
+  },
+  "betriebshof@waiblingen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "h.haas@haas-galabau.de": {
+    "straße": "Hochbergweg 4",
+    "status": "found"
+  },
+  "mtba@augsburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "service@betriebe.tuebingen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@galabau-oberbauer.de": {
+    "straße": "Waldweg 3",
+    "status": "found"
+  },
+  "bauamt@bad-toelz.de": {
+    "straße": "Max-Höfler-Platz 1",
+    "status": "found"
+  },
+  "tiefbauamt@dachau.de": {
+    "straße": "Konrad-Adenauer-Straße 2",
+    "status": "found"
+  },
+  "Tiefbauverwaltung@lra-deg.bayern.de": {
+    "straße": "Herrenstraße 18",
+    "status": "found"
+  },
+  "bauamt@erding.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbau@gapa.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbauamt@ingolstadt.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "baureferat.tiefbau@muenchen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@sammer-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "erlebnisgarten@schleitzer.de": {
+    "straße": "Enterstraße 23",
+    "status": "found"
+  },
+  "info@schulz-gala.de": {
+    "straße": "Kaiserhölzlstraße 43c",
+    "status": "found"
+  },
+  "mail@galabau-deutschmann.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@muenchnergalabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "strassen-undbrueckenbau@passau.de": {
+    "straße": "Rathausplatz 2",
+    "status": "found"
+  },
+  "baubetriebshof@rosenheim.de": {
+    "straße": "Königstraße 24",
+    "status": "found"
+  },
+  "info@galabaugraf.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@donauasphalt-gmbh.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "betriebshof@starnberg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbau@straubing.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@hubertfischer-garten.de": {
+    "straße": "Hauptstraße 29",
+    "status": "found"
+  },
+  "poststelle@stbain.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "poststelle@stbala.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "strassenunterhalt.bau@muenchen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "poststelle@stbapa.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@bergerholding.eu": {
+    "straße": "Spitalhofstraße 19",
+    "status": "found"
+  },
+  "tiefbau@stadt.badkissingen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "strassenunterhalt@bamberg-service.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@badum-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "strassenunterhalt@stadt.bayreuth.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "gala-bau-friedel@web.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@ceb-coburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "helmut.schmidt@stadt.erlangen.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tfa@fuerth.de": {
+    "straße": "Königstraße 88",
+    "status": "found"
+  },
+  "info@vaughn-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "buero@schill-geiger.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@hauth-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "schaupp@asphalt-bau.de": {
+    "straße": "Bayernstraße 8",
+    "status": "found"
+  },
+  "tiefbau@stadt-hof.de": {
+    "straße": "Klosterstr. 1",
+    "status": "found"
+  },
+  "marco.deuerling@stadt-kronach.de": {
+    "straße": "Marktplatz 5",
+    "status": "found"
+  },
+  "info@wiesendanger-garten.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@meysel-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbau@marktredwitz.de": {
+    "straße": "Egerstraße 2",
+    "status": "found"
+  },
+  "GBA@stadt.nuernberg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@gala-brunner.de": {
+    "straße": "Hauptstraße 57",
+    "status": "found"
+  },
+  "info@gries-pflasterbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbau@roedl-baugruppe.de": {
+    "straße": "Parlerstraße 10",
+    "status": "found"
+  },
+  "info@astra-strassenbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "bau-gmbh@t-online.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@hubert-bau.de": {
+    "straße": "Gibitzenhofstraße 58",
+    "status": "found"
+  },
+  "info@landschaftsbau-seufert.de": {
+    "straße": "Hauptstraße 18",
+    "status": "found"
+  },
+  "info@fiegl-pleinfeld.de": {
+    "straße": "Mühlstraße 192",
+    "status": "found"
+  },
+  "strassenunterhalt@regensburg.de": {
+    "straße": "Rathausplatz 1",
+    "status": "found"
+  },
+  "tiefbau@schwabach.de": {
+    "straße": "Ludwigstraße 16",
+    "status": "found"
+  },
+  "info@rothbau.com": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@coburg-garten.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "tiefbau@weiden.de": {
+    "straße": "Pfleger-Straße 15",
+    "status": "found"
+  },
+  "info@franken-asphalt.de": {
+    "straße": "Raiffeisenstraße 15",
+    "status": "found"
+  },
+  "tiefbau@stadt.wuerzburg.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@fleischhacker-galabau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@hortus-galabau.com": {
+    "straße": "Hertzstraße 5",
+    "status": "found"
+  },
+  "info@boellert-galabau.de": {
+    "straße": "Hauptstraße 103",
+    "status": "found"
+  },
+  "poststelle@stbaas.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "poststelle@stbaan.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "poststelle@stbaba.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "poststelle@stbabt.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@lauterbach-bayreuth.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@asphalt24.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "poststelle@stban.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "poststelle@stbar.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@luding-tiefbau.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "poststelle@stbasw.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "selbitz@raedlinger.com": {
+    "straße": "",
+    "status": "not_found"
+  },
+  "info@max-boegl.de": {
+    "straße": "Max-Bögl-Straße 1",
+    "status": "found"
+  },
+  "poststelle@stbawue.bayern.de": {
+    "straße": "",
+    "status": "not_found"
+  }
+}

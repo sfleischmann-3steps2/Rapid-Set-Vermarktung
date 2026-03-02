@@ -16,8 +16,9 @@ import re
 import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-INPUT_FILE = os.path.join(SCRIPT_DIR, "ARM_Tier1_Kampagnenbereit.csv")
-OUTPUT_FILE = os.path.join(SCRIPT_DIR, "ARM_Tier1_CRM_Import.csv")
+ENRICHED_FILE = os.path.join(SCRIPT_DIR, "ARM_ADM_Gesamtliste_enriched.csv")
+INPUT_FILE = ENRICHED_FILE if os.path.exists(ENRICHED_FILE) else os.path.join(SCRIPT_DIR, "ARM_ADM_Gesamtliste.csv")
+OUTPUT_FILE = os.path.join(SCRIPT_DIR, "ARM_ADM_CRM_Import.csv")
 
 # Salesforce header
 CRM_HEADERS = [
@@ -127,7 +128,7 @@ def convert():
                     "Email": row.get("Email", "").strip(),
                     "Lead Status": "New",
                     "Rating": PRIORITY_TO_RATING.get(prioritaet, ""),
-                    "Street": "",
+                    "Street": row.get("Straße", "").strip(),
                     "City": row.get("Ort", "").strip(),
                     "State/Province": "",
                     "Zip/Postal Code": row.get("PLZ", "").strip(),
