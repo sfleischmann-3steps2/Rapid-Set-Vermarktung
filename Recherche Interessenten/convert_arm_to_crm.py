@@ -18,14 +18,14 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ENRICHED_FILE = os.path.join(SCRIPT_DIR, "ARM_ADM_Gesamtliste_enriched.csv")
 INPUT_FILE = ENRICHED_FILE if os.path.exists(ENRICHED_FILE) else os.path.join(SCRIPT_DIR, "ARM_ADM_Gesamtliste.csv")
-OUTPUT_FILE = os.path.join(SCRIPT_DIR, "ARM_ADM_CRM_Import.csv")
+OUTPUT_FILE = os.path.join(SCRIPT_DIR, "ARM_ADM_CRM_Import_v2.csv")
 
 # Salesforce header
 CRM_HEADERS = [
     "First Name", "Last Name", "Company", "Title", "Phone", "Email",
     "Lead Status", "Rating", "Street", "City", "State/Province",
     "Zip/Postal Code", "Country", "Website", "No. Of Employees",
-    "Annual Revenue", "Lead Source", "Industry", "Description"
+    "Annual Revenue", "Lead Source", "Description"
 ]
 
 # Priorität -> Salesforce Rating
@@ -35,12 +35,15 @@ PRIORITY_TO_RATING = {
     "C": "Cold",
 }
 
-# Kategorie -> Salesforce Industry
-KATEGORIE_TO_INDUSTRY = {
-    "Kommune": "Government",
-    "Privat (GaLaBau)": "Construction",
-    "Privat (Straßenbau)": "Construction",
-}
+# Patterns for municipality department names in City field (Kommune leads)
+KOMMUNE_PREFIXES = [
+    "Landesbetrieb ",
+    "Fachbereich Stadtentwicklung und Verkehrsanlagen ",
+    "Fachbereich Straßen und Verkehr ",
+    "Fachbereich Tiefbau und Verkehr ",
+    "Fachdienst Tiefbau und Verkehr ",
+    "Fachbereich Tiefbau ",
+]
 
 # Titles/salutations to strip from name
 SALUTATIONS = {"herr", "frau", "dr.", "prof.", "ing.", "dipl.-ing."}
@@ -88,6 +91,40 @@ def parse_ansprechpartner(name_raw):
         return first_name, last_name, title
 
 
+def clean_city_and_company(city_raw, company_raw, kategorie):
+    """Fix City values that contain department names or extra info.
+
+    For Kommune leads: department name → Company, extract city name.
+    For all leads: strip parenthetical region info from City, keep max 40 chars.
+    """
+    city = city_raw.strip()
+    company = company_raw.strip()
+
+    # Kommune leads: move department name to Company, extract city
+    if kategorie == "Kommune":
+        for prefix in KOMMUNE_PREFIXES:
+            if city.startswith(prefix):
+                company = city  # Full department name becomes Company
+                city = city[len(prefix):]  # Remainder is the city
+                break
+        # Handle LSBG special case with parenthetical
+        if "(" in city and kategorie == "Kommune":
+            # e.g. "Landesbetrieb Straßen, Brücken und Gewässer (LSBG) Hamburg"
+            # Already handled by prefix strip, but clean remaining parens
+            city = re.sub(r'\([^)]*\)\s*', '', city).strip()
+
+    # All leads: strip parenthetical region/address hints
+    # e.g. "Schwabhausen b. Dachau (Münchener Str. 37)" → "Schwabhausen b. Dachau"
+    if "(" in city:
+        city = re.sub(r'\s*\([^)]*\)\s*$', '', city).strip()
+
+    # Final safety: truncate to 40 chars if still too long
+    if len(city) > 40:
+        city = city[:40].rstrip()
+
+    return city, company
+
+
 def build_description(row):
     """Build Description from Gesprächsaufhänger, Notiz, and Quelle."""
     parts = []
@@ -119,17 +156,23 @@ def convert():
                 prioritaet = row.get("Priorität", row.get("\ufeffPriorität", "")).strip()
                 kategorie = row.get("Kategorie", "").strip()
 
+                city, company = clean_city_and_company(
+                    row.get("Ort", ""),
+                    row.get("Firma", ""),
+                    kategorie,
+                )
+
                 crm_row = {
                     "First Name": first_name,
                     "Last Name": last_name,
-                    "Company": row.get("Firma", "").strip(),
+                    "Company": company,
                     "Title": title,
                     "Phone": row.get("Telefon", "").strip(),
                     "Email": row.get("Email", "").strip(),
                     "Lead Status": "New",
                     "Rating": PRIORITY_TO_RATING.get(prioritaet, ""),
                     "Street": row.get("Straße", "").strip(),
-                    "City": row.get("Ort", "").strip(),
+                    "City": city,
                     "State/Province": "",
                     "Zip/Postal Code": row.get("PLZ", "").strip(),
                     "Country": "Germany",
@@ -137,7 +180,6 @@ def convert():
                     "No. Of Employees": "",
                     "Annual Revenue": "",
                     "Lead Source": "ARM Kampagne",
-                    "Industry": KATEGORIE_TO_INDUSTRY.get(kategorie, kategorie),
                     "Description": build_description(row),
                 }
 
