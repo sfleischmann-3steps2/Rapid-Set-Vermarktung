@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Filtert ARM_Kampagne_Gesamtliste.csv auf die Verkaufsgebiete der 4 ADM-Fachberater
+Filtert ARM_Kampagne_Gesamtliste.csv auf die Verkaufsgebiete der 3 ADM-Fachberater
 und erzeugt:
   1. ARM_ADM_Gesamtliste.csv      — Alle Leads in ADM-Gebieten (mit Fachberater-Spalte)
   2. ARM_ADM_Kampagne.xlsx         — Excel mit Übersicht + Fachberater-Tabs
@@ -46,29 +46,28 @@ TERRITORY_MAP = {
     20: "Jens Sackmann", 21: "Jens Sackmann", 22: "Jens Sackmann", 23: "Jens Sackmann",
     24: "Jens Sackmann", 25: "Jens Sackmann", 26: "Jens Sackmann", 27: "Jens Sackmann",
     28: "Jens Sackmann", 29: "Jens Sackmann",
-    # André Grahn: 40-49, 50-53, 57-59
+    # André Grahn: 30-33, 37, 40-49, 50-53, 57-59
+    30: "André Grahn", 31: "André Grahn", 32: "André Grahn", 33: "André Grahn",
+    37: "André Grahn",
     40: "André Grahn", 41: "André Grahn", 42: "André Grahn", 43: "André Grahn",
     44: "André Grahn", 45: "André Grahn", 46: "André Grahn", 47: "André Grahn",
     48: "André Grahn", 49: "André Grahn",
     50: "André Grahn", 51: "André Grahn", 52: "André Grahn", 53: "André Grahn",
     57: "André Grahn", 58: "André Grahn", 59: "André Grahn",
-    # Jens Lang: 70-79, 86-89
+    # Jens Lang: 34-36, 54-56, 60-79, 86-89
+    34: "Jens Lang", 35: "Jens Lang", 36: "Jens Lang",
+    54: "Jens Lang", 55: "Jens Lang", 56: "Jens Lang",
+    60: "Jens Lang", 61: "Jens Lang", 62: "Jens Lang", 63: "Jens Lang",
+    64: "Jens Lang", 65: "Jens Lang", 66: "Jens Lang", 67: "Jens Lang",
+    68: "Jens Lang", 69: "Jens Lang",
     70: "Jens Lang", 71: "Jens Lang", 72: "Jens Lang", 73: "Jens Lang",
     74: "Jens Lang", 75: "Jens Lang", 76: "Jens Lang", 77: "Jens Lang",
     78: "Jens Lang", 79: "Jens Lang",
     86: "Jens Lang", 87: "Jens Lang", 88: "Jens Lang", 89: "Jens Lang",
-    # Daniel May: 80-85, 94
-    80: "Daniel May", 81: "Daniel May", 82: "Daniel May", 83: "Daniel May",
-    84: "Daniel May", 85: "Daniel May",
-    94: "Daniel May",
-    # Francesco Palese: 90-93, 95-97
-    90: "Francesco Palese", 91: "Francesco Palese", 92: "Francesco Palese",
-    93: "Francesco Palese",
-    95: "Francesco Palese", 96: "Francesco Palese", 97: "Francesco Palese",
 }
 
 # Sortierreihenfolge für Fachberater
-FACHBERATER_ORDER = ["Jens Sackmann", "André Grahn", "Jens Lang", "Daniel May", "Francesco Palese"]
+FACHBERATER_ORDER = ["Jens Sackmann", "André Grahn", "Jens Lang"]
 
 # Priorität → Sortierrang
 PRIO_ORDER = {"A": 0, "B": 1, "C": 2}
@@ -315,7 +314,7 @@ def export_excel(rows, prio_field):
 
     summary_data = [
         ["ARM Kampagne — Kampagnenbereite Leads"],
-        ["Stand: 27.02.2026"],
+        ["Stand: 03.03.2026"],
         ["Nur Leads mit AP + Telefon + Email (sofort kontaktierbar)"],
         [""],
         ["Fachberater", "Gesamt", "A (Hot)", "B (Warm)"],
@@ -337,6 +336,12 @@ def export_excel(rows, prio_field):
         ["Leere Status-Spalte für Anruf-Tracking"],
     ])
 
+    # Dynamische Zeilennummern (abhängig von Anzahl Fachberater)
+    total_row = 5 + len(FACHBERATER_ORDER) + 1       # Header(5) + FB-Zeilen + TOTAL
+    farbcode_row = total_row + 2                      # Leerzeile + FARBKODIERUNG
+    fill_a_row = farbcode_row + 1
+    fill_b_row = farbcode_row + 2
+
     for row_idx, row_data in enumerate(summary_data, 1):
         for col_idx, val in enumerate(row_data, 1):
             cell = ws_overview.cell(row=row_idx, column=col_idx, value=val)
@@ -349,13 +354,13 @@ def export_excel(rows, prio_field):
             elif row_idx == 5:
                 cell.font = header_font
                 cell.fill = header_fill_blue
-            elif row_idx == 10:  # TOTAL
+            elif row_idx == total_row:
                 cell.font = Font(bold=True, size=11)
-            elif row_idx == 12:  # FARBKODIERUNG Header
+            elif row_idx == farbcode_row:
                 cell.font = Font(bold=True)
-            elif row_idx == 13:
+            elif row_idx == fill_a_row:
                 cell.fill = fill_a
-            elif row_idx == 14:
+            elif row_idx == fill_b_row:
                 cell.fill = fill_b
 
     # --- Fachberater-Tabs ---

@@ -18,7 +18,7 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ENRICHED_FILE = os.path.join(SCRIPT_DIR, "ARM_ADM_Gesamtliste_enriched.csv")
 INPUT_FILE = ENRICHED_FILE if os.path.exists(ENRICHED_FILE) else os.path.join(SCRIPT_DIR, "ARM_ADM_Gesamtliste.csv")
-OUTPUT_FILE = os.path.join(SCRIPT_DIR, "ARM_ADM_CRM_Import_v2.csv")
+OUTPUT_FILE = os.path.join(SCRIPT_DIR, "ARM_ADM_CRM_Import_v3.csv")
 
 # Salesforce header
 CRM_HEADERS = [

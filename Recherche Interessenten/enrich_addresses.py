@@ -17,7 +17,8 @@ URL-Kandidaten je Domain:
   - Root-URL als letzter Versuch
 
 CLI-Flags:
-  --retry-failed   Setzt alle not_found im Checkpoint zurück → werden neu gescrapt
+  --retry-failed         Setzt alle not_found im Checkpoint zurück → werden neu gescrapt
+  --rebuild-checkpoint   Baut Checkpoint aus enriched CSV neu auf (für neue Lead-Listen)
 """
 
 import csv
@@ -339,10 +340,42 @@ def reset_not_found(checkpoint: dict) -> int:
     return len(keys)
 
 
+def rebuild_checkpoint_from_enriched() -> dict:
+    """Baut Checkpoint aus enriched CSV neu auf (für Gebietsänderungen)."""
+    enriched_file = os.path.join(SCRIPT_DIR, "ARM_ADM_Gesamtliste_enriched.csv")
+    if not os.path.exists(enriched_file):
+        print(f"FEHLER: {enriched_file} nicht gefunden")
+        return {}
+
+    checkpoint = {}
+    with open(enriched_file, "r", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        for row in reader:
+            email = row.get("Email", "").strip()
+            status = row.get("Adresse_Status", "").strip()
+            straße = row.get("Straße", "").strip()
+
+            if not email:
+                continue
+
+            # Nur "found" und "not_found" übernehmen, "pending" überspringen
+            if status in ("found", "not_found"):
+                checkpoint[email] = {"straße": straße, "status": status}
+
+    return checkpoint
+
+
 # ── Hauptlauf ─────────────────────────────────────────────────────────────────
 
-def enrich(retry_failed: bool = False) -> None:
-    checkpoint = load_checkpoint()
+def enrich(retry_failed: bool = False, rebuild_checkpoint: bool = False) -> None:
+    if rebuild_checkpoint:
+        checkpoint = rebuild_checkpoint_from_enriched()
+        save_checkpoint(checkpoint)
+        print(f"--rebuild-checkpoint: {len(checkpoint)} Einträge aus enriched CSV übernommen "
+              f"({sum(1 for v in checkpoint.values() if v.get('status')=='found')} found, "
+              f"{sum(1 for v in checkpoint.values() if v.get('status')=='not_found')} not_found)")
+    else:
+        checkpoint = load_checkpoint()
 
     if retry_failed:
         n = reset_not_found(checkpoint)
@@ -419,4 +452,5 @@ def enrich(retry_failed: bool = False) -> None:
 
 if __name__ == "__main__":
     retry = "--retry-failed" in sys.argv
-    enrich(retry_failed=retry)
+    rebuild = "--rebuild-checkpoint" in sys.argv
+    enrich(retry_failed=retry, rebuild_checkpoint=rebuild)

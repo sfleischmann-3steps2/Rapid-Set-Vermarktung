@@ -117,8 +117,31 @@ Die Tiefbau-Ursprungsliste enthält zahlreiche veraltete Firmennamen:
 
 ---
 
+## Gebietskorrektur (03.03.2026)
+
+Die PLZ-Gebietszuordnung war komplett falsch (5 Fachberater mit falschen PLZ-Bereichen). Korrektur auf **3 Fachberater**:
+
+| Fachberater | PLZ-Bereiche (korrigiert) | Kampagnenbereit |
+|---|---|---|
+| Jens Sackmann | 20-29 | 92 |
+| André Grahn | 30-33, 37, 40-49, 50-53, 57-59 | 140 |
+| Jens Lang | 34-36, 54-56, 60-79, 86-89 | 122 |
+| **TOTAL** | | **354** |
+
+**Änderungen:**
+- Daniel May (80-85, 94) und Francesco Palese (90-93, 95-97) **entfernt** → 75 Leads in `ARM_ADM_Leads_to_remove.csv`
+- PLZ 30-33, 37 → André Grahn **hinzugefügt**
+- PLZ 34-36, 54-56, 60-69 → Jens Lang **hinzugefügt**
+- 265 bestehende Leads übernommen, 89 neue Leads aus Gebiets-Lücken
+- Adress-Anreicherung: 141 found, 124 not_found (übernommen), 89 pending (neu)
+
+---
+
 ## Offene Aufgaben
 
+- [ ] Salesforce: 75 Leads löschen (ARM_ADM_Leads_to_remove.csv)
+- [ ] Adress-Scraping für 89 neue Leads: `python enrich_addresses.py --rebuild-checkpoint`
+- [ ] CRM-Import v3 in Salesforce laden
 - [ ] Kontaktdaten-Verifikation (Stichproben telefonisch prüfen)
 - [ ] Tier 2 Kommunen (89): Telefonisch Bauhofleiter erfragen
 - [ ] Straßenbau-Firmenliste bereinigen (nicht-existente Firmen entfernen/ersetzen)

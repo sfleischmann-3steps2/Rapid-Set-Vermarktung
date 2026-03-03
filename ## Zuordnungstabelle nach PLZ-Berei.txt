@@ -1,0 +1,22 @@
+## Zuordnungstabelle nach PLZ-Bereich ARM Kampagne
+
+Stand: 03.03.2026 — Gebietskorrektur (3 Fachberater)
+
+| PLZ-Bereich | Mitarbeiter |
+
+## Schnell-Lookup für AI-Agenten
+
+Zur programmatischen Zuordnung einer PLZ zum Fachberater:
+
+```
+PLZ 20-29 → Jens Sackmann (Rapid Set)
+PLZ 30-33 → André Grahn (Rapid Set)
+PLZ 34-36 → Jens Lang (Rapid Set)
+PLZ 37    → André Grahn (Rapid Set)
+PLZ 40-49 → André Grahn (Rapid Set)
+PLZ 50-53 → André Grahn (Rapid Set)
+PLZ 54-56 → Jens Lang (Rapid Set)
+PLZ 57-59 → André Grahn (Rapid Set)
+PLZ 60-79 → Jens Lang (Rapid Set)
+PLZ 86-89 → Jens Lang (Rapid Set)
+```

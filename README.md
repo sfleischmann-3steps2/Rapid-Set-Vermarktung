@@ -21,20 +21,20 @@ Die Landing Page für Endkunden (Produktinformation, ohne Aktionsangebot) wird i
 
 ---
 
-## Übersicht (Stand: 02.03.2026)
+## Übersicht (Stand: 03.03.2026)
 
-Die Master-Liste (`ARM_Kampagne_Gesamtliste.csv`) enthält **1.759 Leads** bundesweit. Für den Pilotstart wurde auf die Gebiete von 5 Außendienstmitarbeitern gefiltert — nur Leads mit vollständigen Kontaktdaten (AP + Telefon + Email).
+Die Master-Liste (`ARM_Kampagne_Gesamtliste.csv`) enthält **1.759 Leads** bundesweit. Für den Pilotstart wurde auf die Gebiete von 3 Außendienstmitarbeitern gefiltert — nur Leads mit vollständigen Kontaktdaten (AP + Telefon + Email).
+
+**03.03.2026 — Gebietskorrektur:** PLZ-Zuordnung komplett neu aufgebaut. Daniel May + Francesco Palese aus Kampagne entfernt, fehlende PLZ-Bereiche (30-33, 34-36, 37, 54-56, 60-69) hinzugefügt.
 
 ### ADM-Gebiete (Pilotstart)
 
 | Fachberater | PLZ-Gebiete | Kampagnenbereit |
 |---|---|---|
 | Jens Sackmann | 20–29 | 92 |
-| André Grahn | 40–49, 50–53, 57–59 | 109 |
-| Jens Lang | 70–79, 86–89 | 64 |
-| Daniel May | 80–85, 94 | 26 |
-| Francesco Palese | 90–93, 95–97 | 49 |
-| **TOTAL** | | **340** |
+| André Grahn | 30–33, 37, 40–49, 50–53, 57–59 | 140 |
+| Jens Lang | 34–36, 54–56, 60–79, 86–89 | 122 |
+| **TOTAL** | | **354** |
 
 ---
 
@@ -50,10 +50,11 @@ Rapid-Set-Vermarktung/
     │
     ├── ── ADM-KAMPAGNE (AKTIV) ─────────────────────
     │
-    ├── ARM_ADM_CRM_Import_v2.csv          ← Salesforce-Import (340 Leads, 173 mit Straße) ✔ erfolgreich
+    ├── ARM_ADM_CRM_Import_v3.csv          ← Salesforce-Import (354 Leads, korrigierte Gebiete)
     ├── ARM_ADM_Gesamtliste_enriched.csv   ← Quelldaten + Straße + Adresse_Status
-    ├── ARM_ADM_Gesamtliste.csv            ← Original-Basisdaten (340 Leads, ohne Straße)
-    ├── ARM_ADM_Kampagne.xlsx              ← Excel: Übersicht + 5 Fachberater-Tabs
+    ├── ARM_ADM_Gesamtliste.csv            ← Original-Basisdaten (354 Leads, ohne Straße)
+    ├── ARM_ADM_Kampagne.xlsx              ← Excel: Übersicht + 3 Fachberater-Tabs
+    ├── ARM_ADM_Leads_to_remove.csv        ← 75 Leads (May+Palese) zum Löschen in Salesforce
     ├── Verkaufsgebiete_ARM.md             ← PLZ → Fachberater Zuordnungstabelle
     ├── Gespraechsleitfaden_ARM_Kampagne_Gesamt.md  ← Telefonleitfaden
     │
@@ -83,9 +84,10 @@ Rapid-Set-Vermarktung/
 ## Technisches
 
 - **Python 3** + `openpyxl` benötigt (`pip install openpyxl`)
-- **ADM-Filter:** `python filter_adm_territories.py` — filtert auf 5 Fachberater-Gebiete, erzeugt CSV + Excel
-- **Adress-Anreicherung:** `python enrich_addresses.py` — scrapet Straßenadressen via Impressum (resume-fähig via Checkpoint). Fehlende Adressen danach manuell in `ARM_ADM_Gesamtliste_enriched.csv` nachtragen.
-- **CRM-Import:** `python convert_arm_to_crm.py` → `ARM_ADM_CRM_Import_v2.csv` (Salesforce-Format, Komma-Delimiter, UTF-8 BOM). Liest automatisch enriched CSV wenn vorhanden.
+- **ADM-Filter:** `python filter_adm_territories.py` — filtert auf 3 Fachberater-Gebiete, erzeugt CSV + Excel
+- **Adress-Merge:** `python merge_enrichment.py` — merged bestehende Adressdaten in neu gefilterte CSV
+- **Adress-Anreicherung:** `python enrich_addresses.py` — scrapet Straßenadressen via Impressum (resume-fähig via Checkpoint). `--rebuild-checkpoint` baut Checkpoint aus enriched CSV neu auf. Fehlende Adressen danach manuell in `ARM_ADM_Gesamtliste_enriched.csv` nachtragen.
+- **CRM-Import:** `python convert_arm_to_crm.py` → `ARM_ADM_CRM_Import_v3.csv` (Salesforce-Format, Komma-Delimiter, UTF-8 BOM). Liest automatisch enriched CSV wenn vorhanden.
 
 ---
 
