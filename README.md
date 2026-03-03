@@ -50,10 +50,10 @@ Rapid-Set-Vermarktung/
     │
     ├── ── ADM-KAMPAGNE (AKTIV) ─────────────────────
     │
-    ├── ARM_ADM_Gesamtliste.csv            ← 340 kampagnenbereite Leads (mit Fachberater)
-    ├── ARM_ADM_Gesamtliste_enriched.csv   ← Wie oben + Straße + Adresse_Status (143/340 angereichert)
+    ├── ARM_ADM_CRM_Import_v2.csv          ← Salesforce-Import (340 Leads, 173 mit Straße) ✔ erfolgreich
+    ├── ARM_ADM_Gesamtliste_enriched.csv   ← Quelldaten + Straße + Adresse_Status
+    ├── ARM_ADM_Gesamtliste.csv            ← Original-Basisdaten (340 Leads, ohne Straße)
     ├── ARM_ADM_Kampagne.xlsx              ← Excel: Übersicht + 5 Fachberater-Tabs
-    ├── ARM_ADM_CRM_Import.csv             ← Salesforce-Import (340 Leads, 147 mit Straße)
     ├── Verkaufsgebiete_ARM.md             ← PLZ → Fachberater Zuordnungstabelle
     ├── Gespraechsleitfaden_ARM_Kampagne_Gesamt.md  ← Telefonleitfaden
     │
@@ -61,27 +61,12 @@ Rapid-Set-Vermarktung/
     │
     ├── ARM_Kampagne_Gesamtliste.csv       ← Master-Liste (1.759 Leads, bundesweit)
     ├── PROJEKTSTATUS_ARM_Kampagne.md       ← Projektstatus
-    ├── PROJEKTSTATUS_GaLaBau_Kampagne.md   ← Status GaLaBau
-    │
-    ├── ── AP-RECHERCHE-ERGEBNISSE ────────────────────
-    │
-    ├── GaLaBau_Kommunen_Ansprechpartner_Recherche.csv
-    ├── Kommunen_Recherche_Batch7.csv ... BatchG.csv
-    ├── Tiefbau_GF_Recherche_Batch1-3.csv
-    ├── GaLaBau_GF_Recherche_Batch_K-M.csv / N-Z.csv
-    ├── Strassenbau_GF_Recherche_Batch_A-J.csv / K-Z.csv
-    ├── Recherche Tiefbauunternehmen PLZ 0-9 durch claude.md
-    ├── Recherche GaLaBau PLZ 0-9 durch claude.md
     │
     └── ── SCRIPTS ────────────────────────────────────
-        ├── filter_adm_territories.py      ← ADM-Gebiete filtern + Export
-        ├── integrate_recherche.py          ← Recherche-Integration
-        ├── export_excel.py                 ← Excel-Export Script
-        ├── enrich_addresses.py             ← Impressum-Scraping → Straßenadresse (checkpoint-fähig)
-        ├── enrich_checkpoint.json          ← Fortschritt enrich_addresses.py (resume)
-        ├── convert_arm_to_crm.py           ← CRM-Konvertierung (liest enriched CSV wenn vorhanden)
-        ├── generate_leadlist.py            ← Original Tiefbau-Script
-        └── generate_galabau_leadlist.py    ← Original GaLaBau-Script
+        ├── convert_arm_to_crm.py           ← CRM-Konvertierung (enriched → Salesforce-Format)
+        ├── enrich_addresses.py             ← Impressum-Scraping → Straßenadresse
+        ├── filter_adm_territories.py       ← ADM-Gebiete filtern + Export
+        └── export_excel.py                 ← Excel-Export Script
 ```
 
 ---
@@ -98,7 +83,24 @@ Rapid-Set-Vermarktung/
 ## Technisches
 
 - **Python 3** + `openpyxl` benötigt (`pip install openpyxl`)
-- **ADM-Filter:** `python filter_adm_territories.py` — filtert auf 5 Fachberater-Gebiete, erzeugt CSV + Excel + CRM-Import
+- **ADM-Filter:** `python filter_adm_territories.py` — filtert auf 5 Fachberater-Gebiete, erzeugt CSV + Excel
 - **Adress-Anreicherung:** `python enrich_addresses.py` — scrapet Straßenadressen via Impressum (resume-fähig via Checkpoint). Fehlende Adressen danach manuell in `ARM_ADM_Gesamtliste_enriched.csv` nachtragen.
-- **CRM-Import:** `python convert_arm_to_crm.py` → `ARM_ADM_CRM_Import.csv` (Salesforce-Format, Komma-Delimiter). Liest automatisch enriched CSV wenn vorhanden.
-- **Recherche-Integration:** `python integrate_recherche.py` (alle Batch-CSVs → Hauptliste)
+- **CRM-Import:** `python convert_arm_to_crm.py` → `ARM_ADM_CRM_Import_v2.csv` (Salesforce-Format, Komma-Delimiter, UTF-8 BOM). Liest automatisch enriched CSV wenn vorhanden.
+
+---
+
+## Salesforce Lead-Import: Learnings
+
+Beim ersten Import (v1) sind alle 340 Leads fehlgeschlagen. Folgende Regeln gelten für künftige Imports:
+
+### 1. Kein Industry-Feld / IBS_SC_Branchen__c
+Das Salesforce-Feld `IBS_SC_Branchen__c` ist eine **eingeschränkte Auswahlliste**. Standard-Werte wie `"Construction"` oder `"Government"` werden abgelehnt. **Lösung:** Industry-Spalte komplett weglassen — das Feld wird in Salesforce manuell oder per Automation gesetzt.
+
+### 2. City max. 40 Zeichen
+Salesforce beschränkt das City-Feld auf **40 Zeichen**. Bei kommunalen Leads darf der Behördenname (z.B. "Fachbereich Tiefbau und Verkehr") **nicht** im City-Feld stehen, sondern gehört ins Company-Feld. `convert_arm_to_crm.py` erledigt das automatisch.
+
+### 3. Encoding: UTF-8 mit BOM
+Salesforce + Excel brauchen **UTF-8 mit BOM** (`utf-8-sig`) für korrekte Umlaute (ä, ö, ü, ß).
+
+### 4. Spaltenformat
+Komma-getrennt (Standard-CSV), **nicht** Semikolon. Salesforce-Standard-Feldnamen verwenden (`First Name`, `Last Name`, `Company`, `Street`, `City`, `Zip/Postal Code`, etc.).
